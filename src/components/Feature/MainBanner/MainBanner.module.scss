@@ -1,0 +1,168 @@
+@use "@styles/index.scss" as *;
+
+$cta-bg: #bdee00;
+$ink: #161616;
+
+.banner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
+  width: 100%;
+  max-width: 768px;
+  min-height: calc(474px * var(--ui-scale));
+  padding: calc(120px * var(--ui-scale)) calc(16px * var(--ui-scale)) 0;
+  border-radius: 0 0 calc(24px * var(--ui-scale)) calc(24px * var(--ui-scale));
+}
+
+.glow {
+  position: absolute;
+  top: calc(102px * var(--ui-scale));
+  left: calc(-86px * var(--ui-scale));
+  z-index: 0;
+  width: calc(561px * var(--ui-scale));
+  height: calc(372px * var(--ui-scale));
+  pointer-events: none;
+  object-fit: contain;
+}
+
+.blurTop {
+  position: absolute;
+  top: calc(-120px * var(--ui-scale));
+  left: calc(-100px * var(--ui-scale));
+  z-index: 0;
+  width: calc(420px * var(--ui-scale));
+  height: calc(320px * var(--ui-scale));
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 199, 177, 0.35) 0%,
+    rgba(0, 199, 177, 0) 70%
+  );
+  filter: blur(40px);
+  transform: rotate(18deg);
+}
+
+.blurBottom {
+  position: absolute;
+  bottom: calc(-20px * var(--ui-scale));
+  left: 50%;
+  z-index: 0;
+  width: calc(650px * var(--ui-scale));
+  height: calc(147px * var(--ui-scale));
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 199, 177, 0.25) 0%,
+    rgba(0, 199, 177, 0) 70%
+  );
+  filter: blur(32px);
+  transform: translateX(-50%);
+}
+
+.prize {
+  position: absolute;
+  top: calc(74px * var(--ui-scale));
+  left: 50%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(352px * var(--ui-scale));
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.label {
+  margin: 0 0 calc(-12px * var(--ui-scale));
+  color: $text-inverse;
+  font-family: "Manrope", sans-serif;
+  font-size: calc(20px * var(--ui-scale));
+  font-weight: $font-weight-bold;
+  line-height: calc(24px * var(--ui-scale));
+  text-align: center;
+  white-space: nowrap;
+}
+
+.amount {
+  margin: 0 0 calc(-12px * var(--ui-scale));
+  color: $text-inverse;
+  font-family: "Oswald", "Manrope", sans-serif;
+  font-size: calc(96px * var(--ui-scale));
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  text-align: center;
+  text-shadow: 0 calc(4px * var(--ui-scale)) calc(24px * var(--ui-scale))
+    rgba(0, 0, 0, 0.45);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.safeWrap {
+  position: absolute;
+  top: calc(189px * var(--ui-scale));
+  left: 50%;
+  z-index: 1;
+  width: calc(346px * var(--ui-scale));
+  height: calc(270px * var(--ui-scale));
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.safe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(
+    0 calc(12px * var(--ui-scale)) calc(40px * var(--ui-scale)) rgba(0, 199, 177, 0.25)
+  );
+}
+
+.cta {
+  position: relative;
+  z-index: 3;
+  display: inline-flex;
+  flex-shrink: 0;
+  gap: calc(8px * var(--ui-scale));
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: calc(343px * var(--ui-scale));
+  height: calc(48px * var(--ui-scale));
+  margin-top: auto;
+  margin-bottom: 0;
+  padding: calc(10px * var(--ui-scale)) calc(20px * var(--ui-scale))
+    calc(11px * var(--ui-scale));
+  border: none;
+  border-radius: calc(1000px * var(--ui-scale));
+  background: $cta-bg;
+  color: $ink;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: opacity $transition-fast ease;
+
+  &:hover:not(:disabled) {
+    opacity: 0.92;
+    border-color: transparent;
+  }
+}
+
+.ctaIcon {
+  flex-shrink: 0;
+  width: calc(24px * var(--ui-scale));
+  height: calc(24px * var(--ui-scale));
+}
+
+.ctaText {
+  margin: 0;
+  color: $ink;
+  font-family: "Manrope", sans-serif;
+  font-size: calc(16px * var(--ui-scale));
+  font-weight: 600;
+  line-height: calc(20px * var(--ui-scale));
+  white-space: nowrap;
+}

@@ -1,0 +1,262 @@
+@use "@styles/index.scss" as *;
+
+$card-from: #00ffe3;
+$card-via: #00c7b1;
+$card-to: #007669;
+$ink: #161616;
+$odds-bg: #152531;
+$badge-bg: #1a2c38;
+$cta-bg: #bdee00;
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: calc(32px * var(--ui-scale));
+  overflow: hidden;
+  width: 100%;
+  border-radius: calc(16px * var(--ui-scale));
+  background: linear-gradient(180deg, $card-from 0%, $card-via 75%, $card-to 100%);
+}
+
+.pattern {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(458px * var(--ui-scale));
+  height: calc(407px * var(--ui-scale));
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.info {
+  padding: calc(16px * var(--ui-scale));
+
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: calc(16px * var(--ui-scale));
+  width: calc(100% - calc(32px * var(--ui-scale)));
+}
+
+.statusLine {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: calc(24px * var(--ui-scale));
+}
+
+.timer,
+.statusBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(24px * var(--ui-scale));
+  border-radius: calc(66px * var(--ui-scale));
+  background: $badge-bg;
+  backdrop-filter: blur(2.5px);
+}
+
+.timer {
+  gap: calc(4px * var(--ui-scale));
+  padding: 0 calc(8px * var(--ui-scale)) 0 calc(6px * var(--ui-scale));
+
+  .timerText {
+    margin: 0;
+    color: $text-inverse;
+    font-family: "Manrope", sans-serif;
+    font-size: calc(10px * var(--ui-scale));
+    font-weight: $font-weight-bold;
+    line-height: calc(12px * var(--ui-scale));
+    white-space: nowrap;
+  }
+}
+
+.timerIcon {
+  flex-shrink: 0;
+  width: calc(12px * var(--ui-scale));
+  height: calc(12px * var(--ui-scale));
+  color: $text-inverse;
+}
+
+.timerValue {
+  line-height: calc(12px * var(--ui-scale));
+}
+
+.timerUnit {
+  line-height: calc(10px * var(--ui-scale));
+}
+
+.statusBadge {
+  gap: calc(6px * var(--ui-scale));
+  padding: 0 calc(8px * var(--ui-scale));
+
+  .statusText {
+    margin: 0;
+    color: $text-inverse;
+    font-family: "Manrope", sans-serif;
+    font-size: calc(10px * var(--ui-scale));
+    font-weight: $font-weight-bold;
+    line-height: calc(12px * var(--ui-scale));
+    white-space: nowrap;
+  }
+}
+
+.statusDot {
+  flex-shrink: 0;
+  width: calc(3px * var(--ui-scale));
+  height: calc(3px * var(--ui-scale));
+  border-radius: 50%;
+  background: $text-inverse;
+}
+
+.info .title {
+  margin: 0;
+  width: 100%;
+  color: $ink;
+  font-family: "Manrope", sans-serif;
+  font-size: calc(16px * var(--ui-scale));
+  font-weight: 600;
+  line-height: calc(20px * var(--ui-scale));
+  text-align: center;
+}
+
+.teams {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: calc(16px * var(--ui-scale));
+  align-items: center;
+}
+
+.avatars {
+  padding: 0 calc(16px * var(--ui-scale));
+  width: calc(100% - calc(32px * var(--ui-scale)));
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.avatar {
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  width: calc(110px * var(--ui-scale));
+  height: calc(110px * var(--ui-scale));
+  border-radius: 50%;
+  background: rgba(26, 44, 56, 0.4);
+  backdrop-filter: blur(20.9px);
+}
+
+.avatarImage {
+  position: absolute;
+  top: 12.73%;
+  left: 0;
+  width: 100%;
+  height: 158%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: calc(8px * var(--ui-scale));
+  width: 100%;
+}
+
+.odds {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(4px * var(--ui-scale));
+  width: 100%;
+  height: calc(28px * var(--ui-scale));
+}
+
+.oddsSide {
+  background: red;
+  display: flex;
+  align-items: center;
+  padding: 0 calc(4px * var(--ui-scale));
+  background: $odds-bg;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 9px) 100%, 0 100%);
+}
+
+.oddsSideRight {
+  justify-content: flex-end;
+  clip-path: polygon(9px 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.oddsValue {
+  color: $text-inverse;
+  font-family: "Manrope", sans-serif;
+  font-size: calc(16px * var(--ui-scale));
+  font-weight: $font-weight-bold;
+  line-height: calc(20px * var(--ui-scale));
+}
+
+.names {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(24px * var(--ui-scale));
+  padding: 0 calc(16px * var(--ui-scale));
+  width: calc(100% - calc(32px * var(--ui-scale)));
+}
+
+.names .name {
+  margin: 0;
+  color: $ink;
+  font-family: "Manrope", sans-serif;
+  font-size: calc(16px * var(--ui-scale));
+  font-weight: 600;
+  line-height: calc(20px * var(--ui-scale));
+}
+
+.names .nameRight {
+  text-align: right;
+}
+
+.actions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 0 0 calc(16px * var(--ui-scale));
+}
+
+.cta {
+  display: inline-flex;
+  gap: calc(8px * var(--ui-scale));
+  align-items: center;
+  justify-content: center;
+  width: calc(229px * var(--ui-scale));
+  height: calc(48px * var(--ui-scale));
+  padding: calc(10px * var(--ui-scale)) calc(20px * var(--ui-scale)) calc(11px * var(--ui-scale));
+  border: none;
+  border-radius: calc(1000px * var(--ui-scale));
+  background: $cta-bg;
+  color: $ink;
+  font-family: "Manrope", sans-serif;
+  font-size: calc(16px * var(--ui-scale));
+  font-weight: 600;
+  line-height: calc(20px * var(--ui-scale));
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: opacity $transition-fast ease;
+
+  &:hover:not(:disabled) {
+    opacity: 0.92;
+    border-color: transparent;
+  }
+}
+
+.ctaIcon {
+  flex-shrink: 0;
+  width: calc(24px * var(--ui-scale));
+  height: calc(24px * var(--ui-scale));
+}

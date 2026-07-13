@@ -1,0 +1,97 @@
+@use "@styles/index.scss" as *;
+
+$mint: #00c7b1;
+$ink: #161616;
+$locked-bg: #2f4552;
+$star-bg: rgba(211, 235, 255, 0.1);
+
+.day {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: calc(21px * var(--ui-scale));
+  align-items: center;
+  box-sizing: border-box;
+  width: calc(35px * var(--ui-scale));
+  height: calc(80px * var(--ui-scale));
+  padding: calc(4px * var(--ui-scale));
+  border: 1px solid transparent;
+  border-radius: calc(12px * var(--ui-scale));
+}
+
+.dayOpen {
+  border-color: $mint;
+}
+
+.dayLocked {
+  border-color: $locked-bg;
+}
+
+.badge {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: calc(27px * var(--ui-scale));
+  height: calc(27px * var(--ui-scale));
+  border-radius: calc(9px * var(--ui-scale));
+}
+
+.badgeOpen {
+  background: $mint;
+
+  .badgeText {
+    color: $ink;
+  }
+}
+
+.badgeLocked {
+  background: $locked-bg;
+
+  .badgeText {
+    color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+.badgeText {
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+  font-size: calc(12px * var(--ui-scale));
+  font-weight: $font-weight-bold;
+  line-height: calc(16px * var(--ui-scale));
+  text-align: center;
+  white-space: nowrap;
+}
+
+.status {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: calc(20px * var(--ui-scale));
+  height: calc(20px * var(--ui-scale));
+  border-radius: 50%;
+}
+
+statusOpen {
+  color: $mint;
+  background: $ink;
+}
+
+.statusLocked {
+  position: relative;
+  background: $star-bg;
+}
+
+.statusIcon {
+  display: block;
+  width: calc(10.5px * var(--ui-scale));
+  height: calc(10.5px * var(--ui-scale));
+}
+
+.starIcon {
+  display: block;
+  width: calc(5.3px * var(--ui-scale));
+  height: calc(5px * var(--ui-scale));
+}

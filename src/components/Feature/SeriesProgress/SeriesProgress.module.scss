@@ -1,0 +1,130 @@
+@use "@styles/index.scss" as *;
+
+$subtitle: rgba(211, 235, 255, 0.6);
+$card-bg: #1a2c38;
+$fade-from: #223543;
+$fade-to: #1a2c38;
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: calc(16px * var(--ui-scale));
+  align-items: flex-start;
+  width: 100%;
+  max-width: 768px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: calc(8px * var(--ui-scale));
+  width: 100%;
+}
+
+.header .heading {
+  margin: 0;
+  color: $text-inverse;
+  font-family: "Manrope", sans-serif;
+  font-size: calc(20px * var(--ui-scale));
+  font-weight: $font-weight-bold;
+  line-height: calc(24px * var(--ui-scale));
+}
+
+.header .description {
+  margin: 0;
+  color: $subtitle;
+  font-family: "Manrope", sans-serif;
+  font-size: calc(12px * var(--ui-scale));
+  font-weight: $font-weight-medium;
+  line-height: calc(16px * var(--ui-scale));
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+  padding-top: calc(16px * var(--ui-scale));
+  border-radius: calc(16px * var(--ui-scale));
+  background: $card-bg;
+}
+
+.meta {
+  display: flex;
+  gap: calc(10px * var(--ui-scale));
+  align-items: center;
+  justify-content: space-between;
+  width: calc(100% - calc(32px * var(--ui-scale)));
+  padding: 0 calc(16px * var(--ui-scale));
+}
+
+.metaText {
+  margin: 0;
+  color: $text-inverse;
+  font-family: "Manrope", sans-serif;
+  font-size: calc(12px * var(--ui-scale));
+  font-weight: $font-weight-medium;
+  line-height: calc(16px * var(--ui-scale));
+  white-space: nowrap;
+}
+
+.trackWrap {
+  position: relative;
+  width: 100%;
+  margin-top: calc(16px * var(--ui-scale));
+  margin-bottom: calc(16px * var(--ui-scale));
+}
+
+.track {
+  display: flex;
+  gap: calc(5px * var(--ui-scale));
+  align-items: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  overscroll-behavior-y: none;
+  width: calc(100% - calc(30px * var(--ui-scale)));
+  height: calc(80px * var(--ui-scale));
+  padding: 0 calc(12px * var(--ui-scale));
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-snap-type: x mandatory;
+  touch-action: pan-x;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.item {
+  flex-shrink: 0;
+}
+
+.fadeLeft,
+.fadeRight {
+  position: absolute;
+  top: calc(-5px * var(--ui-scale));
+  z-index: 3;
+  width: calc(69px * var(--ui-scale));
+  height: calc(154px * var(--ui-scale));
+  pointer-events: none;
+  opacity: 0;
+  filter: blur(9.75px);
+  transition: opacity $transition-base ease;
+}
+
+.fadeVisible {
+  opacity: 1;
+}
+
+.fadeLeft {
+  left: 0;
+  transform: translateX(calc(-16px * var(--ui-scale)));
+  background: linear-gradient(90deg, $fade-to 0%, transparent 100%);
+}
+
+.fadeRight {
+  right: 0;
+  background: linear-gradient(270deg, $fade-from 0%, transparent 100%);
+}

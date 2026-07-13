@@ -1,0 +1,55 @@
+:root {
+  background-color: #242424;
+  color: rgb(255, 255, 255, 0.87);
+  color-scheme: light dark;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
+  font-weight: 400;
+  text-rendering: optimizelegibility;
+}
+
+a {
+  color: #646cff;
+  font-weight: 500;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #535bf2;
+}
+
+html {
+  scrollbar-width: none;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  min-width: 320px;
+  min-height: 100vh;
+  scrollbar-width: none;
+
+  & > * {
+    scrollbar-width: none;
+  }
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  outline: none;
+}
+
+button:focus,
+button:focus-visible {
+  outline: none;
+}
+
+button:hover {
+  border-color: #646cff;
+}
