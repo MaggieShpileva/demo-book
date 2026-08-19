@@ -1,2 +1,12 @@
-node_modules
-dist
+node_modules/
+dist/
+
+# Local agent task time tracking
+.cursor/task-time/
+
+# Local pre-commit rules reviews (report-only)
+.cursor/reviews/
+
+# Python bytecode from Cursor hooks
+.cursor/hooks/__pycache__/
+

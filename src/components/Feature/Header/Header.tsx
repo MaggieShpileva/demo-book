@@ -20,6 +20,16 @@ export const Header: FC = () => {
               </NavLink>
             </li>
             <li className={styles.navItem}>
+              <NavLink to="/rating" className={styles.navLink}>
+                Рейтинг
+              </NavLink>
+            </li>
+            <li className={styles.navItem}>
+              <NavLink to="/book" className={styles.navLink}>
+                Book
+              </NavLink>
+            </li>
+            <li className={styles.navItem}>
               <NavLink to="/about" className={styles.navLink}>
                 About
               </NavLink>

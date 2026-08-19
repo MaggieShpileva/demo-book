@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeSubmitPrompt": [
+      {
+        "command": "python3 .cursor/hooks/track-task-time.py",
+        "timeout": 5
+      }
+    ],
+    "beforeShellExecution": [
+      {
+        "command": "python3 .cursor/hooks/pre-commit-rules-review.py",
+        "matcher": "git\\s+commit\\b",
+        "timeout": 30
+      }
+    ],
+    "stop": [
+      {
+        "command": "python3 .cursor/hooks/track-task-time.py",
+        "timeout": 5
+      }
+    ],
+    "sessionEnd": [
+      {
+        "command": "python3 .cursor/hooks/track-task-time.py",
+        "timeout": 5
+      }
+    ]
+  }
+}

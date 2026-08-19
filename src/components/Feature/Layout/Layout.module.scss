@@ -1,4 +1,4 @@
-@use '@styles/index.scss' as *;
+@use "@styles/index.scss" as *;
 
 .layout {
   margin: 0 auto;
@@ -9,7 +9,6 @@
 }
 
 .main {
-  padding: $spacing-xl;
   display: flex;
   flex: 1;
   justify-content: center;

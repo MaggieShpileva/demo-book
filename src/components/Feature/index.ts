@@ -1,9 +1,8 @@
 export { Banner } from './Banner';
+export { Book } from './Book';
 export { Header } from './Header';
 export { Footer } from './Footer';
 export { NotFound } from './NotFound';
 export { Layout } from './Layout';
 export { Error } from './Error';
-export { Predictions } from './Predictions';
-export { SeriesProgress } from './SeriesProgress';
-export { MainBanner } from './MainBanner';
+export { Tasks } from './Tasks';

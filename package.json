@@ -12,13 +12,15 @@
     "lint:css:fix": "stylelint \"**/*.{css,scss}\" --fix",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
-    "prepare": "cd .. && husky install .husky",
+    "rules:review": "python3 .cursor/hooks/pre-commit-rules-review.py --git",
+    "prepare": "husky",
     "preview": "vite preview"
   },
   "dependencies": {
     "clsx": "^2.1.1",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
+    "react-pageflip": "^2.0.3",
     "react-router-dom": "^7.9.6"
   },
   "devDependencies": {

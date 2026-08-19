@@ -1,0 +1,40 @@
+@use '@styles/index.scss' as *;
+
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: calc(12px * var(--ui-scale));
+}
+
+.button {
+  min-width: calc(112px * var(--ui-scale));
+  padding: calc(10px * var(--ui-scale)) calc(16px * var(--ui-scale));
+  border: calc(1px * var(--ui-scale)) solid rgb(255 255 255 / 16%);
+  border-radius: $border-radius-md;
+  background: rgb(255 255 255 / 6%);
+  color: $text-inverse;
+  font-size: calc(14px * var(--ui-scale));
+  cursor: pointer;
+  transition:
+    background $transition-fast ease,
+    border-color $transition-fast ease;
+
+  &:hover:not(:disabled) {
+    background: rgb(255 255 255 / 12%);
+    border-color: rgb(255 255 255 / 28%);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+.status {
+  min-width: calc(120px * var(--ui-scale));
+  color: rgb(255 255 255 / 72%);
+  font-size: calc(13px * var(--ui-scale));
+  text-align: center;
+}

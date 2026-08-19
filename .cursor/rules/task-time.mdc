@@ -1,0 +1,26 @@
+---
+description: "Name the task in the first prompt line so local time tracking can log it"
+alwaysApply: true
+---
+
+# Task time tracking
+
+Local hooks log wall-clock time per chat into `.cursor/task-time/log.md` (gitignored).
+
+## Do
+
+- Start a **new Agent chat per task**.
+- Put the task name on the **first line** of the first prompt:
+
+```text
+Task: Implement Tasks tabs
+```
+
+or
+
+```text
+Задача: Экран рейтинга
+```
+
+- If there is no `Task:` / `Задача:` prefix, the first line (≤ 80 chars) is used as the name.
+- Do not invent or rewrite the logged task name in replies unless the user asks.
