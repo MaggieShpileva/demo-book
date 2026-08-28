@@ -1,56 +1,42 @@
-import { forwardRef } from 'react';
-import HTMLFlipBook from 'react-pageflip';
-import { BookPage } from '../BookPage';
-import { BOOK_PAGES } from '../../mock';
-import styles from '../../Book.module.scss';
-
-type FlipBookApi = {
-  pageFlip: () => {
-    flipPrev: () => void;
-    flipNext: () => void;
-  };
-};
+import { forwardRef, Suspense, useImperativeHandle } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { useBookFlip } from './hooks/useBookFlip';
+import { useSinglePageBook } from './hooks/useSinglePageBook';
+import { bookPages } from './components/Book/htmlPages';
+import { buildBookSheets } from './components/Book/utils/buildBookSheets';
+import styles from './FlipBook.module.scss';
+import type { FlipBookApi } from './types';
+import { Experience } from './components/Experience';
 
 type FlipBookProps = {
   onFlip: (pageIndex: number) => void;
 };
 
-const FLIP_BOOK_PROPS = {
-  width: 420,
-  height: 560,
-  size: 'stretch' as const,
-  minWidth: 280,
-  maxWidth: 480,
-  minHeight: 380,
-  maxHeight: 640,
-  showCover: true,
-  drawShadow: true,
-  flippingTime: 900,
-  usePortrait: true,
-  startZIndex: 0,
-  autoSize: true,
-  maxShadowOpacity: 0.55,
-  mobileScrollSupport: true,
-  clickEventForward: true,
-  useMouseEvents: true,
-  swipeDistance: 30,
-  showPageCorners: true,
-  disableFlipByClick: false,
-  startPage: 0,
-  className: styles.flipBook,
-  style: {},
-};
+export const FlipBook = forwardRef<FlipBookApi, FlipBookProps>(
+  ({ onFlip }, ref) => {
+    const singlePage = useSinglePageBook();
+    const sheetCount = buildBookSheets(bookPages, singlePage).length;
+    const pageCount = singlePage ? sheetCount : sheetCount + 1;
+    const { flipNext, flipPrev } = useBookFlip(pageCount, onFlip);
 
-export const FlipBook = forwardRef<FlipBookApi, FlipBookProps>(({ onFlip }, ref) => (
-  <HTMLFlipBook
-    ref={ref}
-    {...FLIP_BOOK_PROPS}
-    onFlip={(event: { data: number }) => onFlip(event.data)}
-  >
-    {BOOK_PAGES.map((page) => (
-      <BookPage key={page.id} page={page} />
-    ))}
-  </HTMLFlipBook>
-));
+    useImperativeHandle(ref, () => ({
+      pageFlip: () => ({ flipPrev, flipNext }),
+    }));
+
+    return (
+      <Canvas
+        className={styles.canvas}
+        shadows
+        camera={{ position: [0, 1.5, 4], fov: 42 }}
+      >
+        <group position-y={0}>
+          <Suspense fallback={null}>
+            <Experience singlePage={singlePage} />
+          </Suspense>
+        </group>
+      </Canvas>
+    );
+  }
+);
 
 FlipBook.displayName = 'FlipBook';

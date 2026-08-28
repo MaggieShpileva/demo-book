@@ -7,15 +7,6 @@
   gap: calc(24px * var(--ui-scale));
   width: 100%;
   max-width: calc(960px * var(--ui-scale));
-  padding: calc(32px * var(--ui-scale)) calc(16px * var(--ui-scale));
-}
-
-.header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: calc(8px * var(--ui-scale));
-  text-align: center;
 }
 
 .title {
@@ -36,9 +27,5 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  filter: drop-shadow(0 calc(18px * var(--ui-scale)) calc(40px * var(--ui-scale)) rgb(0 0 0 / 45%));
-}
-
-.flipBook {
-  margin: 0 auto;
+  height: calc(640px * var(--ui-scale));
 }

@@ -13,6 +13,12 @@ export const BOOK_COPY = {
   prev: 'Назад',
   next: 'Вперёд',
   pageLabel: 'Страница',
+  cover: 'Обложка',
+  backCover: 'Задняя обложка',
+  pageNav: 'Навигация по страницам',
+  loading: 'Загрузка книги',
+  foldCorner: 'Завернуть уголок',
+  unfoldCorner: 'Вернуть уголок',
 } as const;
 
 export const BOOK_PAGES: BookPageData[] = [

@@ -1,4 +1,4 @@
-@use '@styles/index.scss' as *;
+@use "@styles/index.scss" as *;
 
 .root {
   overflow: hidden;
@@ -46,9 +46,7 @@
   gap: calc(16px * var(--ui-scale));
   height: 100%;
   padding: calc(28px * var(--ui-scale)) calc(24px * var(--ui-scale));
-  background:
-    linear-gradient(90deg, rgb(0 0 0 / 6%) 0, transparent 12px),
-    #f7f2ea;
+  background: linear-gradient(90deg, rgb(0 0 0 / 6%) 0, transparent 12px), #f7f2ea;
   box-shadow: inset 0 0 0 1px rgb(0 0 0 / 4%);
 }
 
