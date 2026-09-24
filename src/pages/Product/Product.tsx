@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import { useParams } from 'react-router-dom';
 import { templateRegistry } from '@components/Feature';
+import { Template01, getTemplate01Props } from '@components/Feature/Template01';
 import { getProductById } from '@/mock';
 
 export const Product: FC = () => {
@@ -9,6 +10,10 @@ export const Product: FC = () => {
 
   if (!product) {
     return <p>Product not found</p>;
+  }
+
+  if (product.templateId === 1) {
+    return <Template01 {...getTemplate01Props(product)} />;
   }
 
   const Template = templateRegistry[product.templateId];

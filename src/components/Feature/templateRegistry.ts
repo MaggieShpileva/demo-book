@@ -1,6 +1,5 @@
 import type { FC } from 'react';
 import type { ProductProps, TemplateId } from '@/types/product';
-import { Template01 } from './Template01';
 import { Template02 } from './Template02';
 import { Template03 } from './Template03';
 import { Template04 } from './Template04';
@@ -12,7 +11,6 @@ import { Template09 } from './Template09';
 import { Template10 } from './Template10';
 
 export const templateRegistry: Partial<Record<TemplateId, FC<ProductProps>>> = {
-  1: Template01,
   2: Template02,
   3: Template03,
   4: Template04,

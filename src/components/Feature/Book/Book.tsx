@@ -6,12 +6,10 @@ import { setBookPage, selectBookPage } from '@/store/features/book';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import styles from './Book.module.scss';
 import { BookCanvas } from './components/BookCanvas';
-import { BookControls } from './components/BookControls';
 import { BookDragProvider } from './components/BookDragState';
 import { BookPageProvider } from './components/BookPageState';
 import { useBookDelayedPage } from './hooks/useBookDelayedPage';
 import { useBookTextures } from './hooks/useBookTextures';
-import { bookSheets } from './utils/buildBookSheets';
 
 type BookProps = {
   className?: string;

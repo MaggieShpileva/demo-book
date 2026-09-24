@@ -1,6 +1,5 @@
 import type { FC } from 'react';
 import { BookPage } from '../BookPage';
-import { BookSpine } from '../BookSpine';
 import { bookSheets } from '../../utils/buildBookSheets';
 
 type BookMeshProps = {

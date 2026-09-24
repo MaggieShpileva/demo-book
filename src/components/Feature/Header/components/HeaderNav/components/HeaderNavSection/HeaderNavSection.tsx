@@ -37,7 +37,7 @@ export const HeaderNavSection: FC<HeaderNavSectionProps> = ({
     style={
       {
         '--header-nav-fill': String(fillRatio),
-      } satisfies HeaderNavSectionStyle
+      } as HeaderNavSectionStyle
     }
     aria-current={isActive ? 'true' : undefined}
     aria-label={ariaLabel}
