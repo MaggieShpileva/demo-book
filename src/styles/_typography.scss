@@ -1,1 +1,17 @@
-// Базовые стили типографики
+@font-face {
+  font-family: graphik-regular;
+  font-weight: 400;
+  src: url('@assets/fonts/GraphikLCG-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: graphik-medium;
+  font-weight: 500;
+  src: url('@assets/fonts/GraphikLCG-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: Druk-Bold;
+  font-weight: 700;
+  src: url('@assets/fonts/Druk-Wide-Cyr.ttf') format('truetype');
+}

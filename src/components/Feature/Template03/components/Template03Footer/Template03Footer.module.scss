@@ -1,0 +1,13 @@
+@use '@styles/index.scss' as *;
+
+.slideNumber {
+  margin: 0;
+  color: $black;
+  font-size: calc(35px * var(--page-scale));
+  line-height: 1.45;
+  flex-shrink: 0;
+  font-family: $font-family-regular;
+  letter-spacing: calc(-0.7px * var(--page-scale));
+  text-transform: uppercase;
+  white-space: nowrap;
+}

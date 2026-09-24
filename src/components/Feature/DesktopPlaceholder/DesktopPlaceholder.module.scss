@@ -1,0 +1,55 @@
+@use '@styles/index.scss' as *;
+
+.root {
+  --placeholder-scale: min(1, 100dvw / #{$breakpoint-sm});
+
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    $placeholder-gradient-start 0%,
+    $placeholder-gradient-end 117.91%
+  );
+}
+
+.content {
+  width: calc(640px * var(--placeholder-scale));
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(30px * var(--placeholder-scale));
+}
+
+.title {
+  margin: 0;
+  width: 100%;
+  color: $black;
+  font-size: calc(50px * var(--placeholder-scale));
+  line-height: 1.1;
+  text-align: center;
+  font-family: $font-family-medium;
+  font-weight: $font-weight-medium;
+  letter-spacing: calc(-0.2px * var(--placeholder-scale));
+}
+
+.qr {
+  width: calc(125px * var(--placeholder-scale));
+  height: calc(125px * var(--placeholder-scale));
+  display: block;
+}
+
+.caption {
+  margin: 0;
+  width: 100%;
+  color: $black;
+  font-size: calc(16px * var(--placeholder-scale));
+  line-height: 1.4;
+  text-align: center;
+  font-family: $font-family-regular;
+  font-weight: $font-weight-regular;
+}

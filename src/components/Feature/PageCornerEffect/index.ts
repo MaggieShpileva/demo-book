@@ -1,0 +1,1 @@
+export { PageCornerEffect } from './PageCornerEffect';

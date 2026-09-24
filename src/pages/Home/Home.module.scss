@@ -1,49 +1,16 @@
-@use "@styles/index.scss" as *;
+@use '@styles/index.scss' as *;
 
-.page {
-  display: flex;
-  flex-direction: column;
-  gap: calc(24px * var(--ui-scale));
-  align-items: stretch;
+.loader {
   width: 100%;
-  max-width: 768px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100dvh;
+  height: 100%;
+  position: fixed;
+  z-index: 100;
+  background: white;
+  inset: 0;
 }
 
-.icon {
-  animation: draw 2s ease-in-out;
-  animation-delay: 1s;
-  animation-fill-mode: forwards;
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  stroke: #0b0b0b;
-  stroke-width: 5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  color: #fcfcfc;
-  :global(path) {
-    animation: draw 2s linear forwards;
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
-    &:nth-child(1) {
-      animation-delay: 0s;
-    }
-    &:nth-child(2) {
-      animation-delay: 1s;
-    }
-    &:nth-child(3) {
-      animation-delay: 1.8s;
-    }
-    &:nth-child(4) {
-      animation-delay: 2.4s;
-    }
-  }
-}
-@keyframes draw {
-  to {
-    stroke-dashoffset: 0;
-  }
+.book {
+  padding-top: calc(12px * var(--ui-scale));
+  width: 100dvw;
+  height: 100dvh;
 }

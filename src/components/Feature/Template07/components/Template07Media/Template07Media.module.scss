@@ -1,0 +1,68 @@
+@use '@styles/index.scss' as *;
+
+.root {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.detailFrame {
+  width: calc(874px * var(--page-scale));
+  height: calc(976px * var(--page-scale));
+  position: absolute;
+  top: calc(818px * var(--page-scale));
+  left: calc(645px * var(--page-scale));
+  z-index: 1;
+  background-color: $surface-gray;
+}
+
+.detailWrap {
+  width: calc(1873.666px * var(--page-scale));
+  height: calc(1585.721px * var(--page-scale));
+  position: absolute;
+  top: calc(513px * var(--page-scale));
+  left: calc(170px * var(--page-scale));
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detailRotate {
+  width: calc(1589px * var(--page-scale));
+  height: calc(1079px * var(--page-scale));
+  flex: none;
+  transform: rotate(-21.47deg);
+}
+
+.detailImage {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.bottleFrame {
+  width: calc(753px * var(--page-scale));
+  height: calc(1234px * var(--page-scale));
+  position: absolute;
+  top: calc(989px * var(--page-scale));
+  left: calc(109px * var(--page-scale));
+  z-index: 3;
+  border: calc(4px * var(--page-scale)) solid $white;
+  background-color: $surface-gray;
+}
+
+.bottleImage {
+  width: calc(439px * var(--page-scale));
+  height: calc(1472px * var(--page-scale));
+  position: absolute;
+  top: calc(749px * var(--page-scale));
+  left: calc(255px * var(--page-scale));
+  z-index: 6;
+  display: block;
+  object-fit: contain;
+  object-position: bottom;
+  pointer-events: none;
+}

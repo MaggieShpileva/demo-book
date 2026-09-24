@@ -1,0 +1,11 @@
+@use '@styles/index.scss' as *;
+
+.root {
+  position: relative;
+
+  @include page-template-artboard;
+
+  > * {
+    flex-shrink: 0;
+  }
+}

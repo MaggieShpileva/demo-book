@@ -2,32 +2,42 @@ import type { FC, ReactNode } from 'react';
 import clsx from 'clsx';
 import styles from './Title.module.scss';
 
+type TitleAs = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+
+type TitleSize =
+  | 'small'
+  | 'medium'
+  | 'large'
+  | 'xlarge'
+  | 'display'
+  | 'displayLg'
+  | 'displayXl'
+  | 'display2xl';
+
 type TitleProps = {
-  tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-  children: ReactNode;
-  className?: string;
   variant?: 'regular' | 'medium' | 'bold';
-} & React.ComponentPropsWithoutRef<'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'>;
+  size?: TitleSize;
+  uppercase?: boolean;
+  children?: ReactNode;
+  className?: string;
+  as?: TitleAs;
+};
 
 export const Title: FC<TitleProps> = ({
-  children,
-  tag,
-  className,
   variant = 'regular',
-  ...restProps
+  size = 'small',
+  uppercase = true,
+  children,
+  className,
+  as: Component = 'h2',
 }) => {
-  // Вычисляемые значения
-  const Tag = tag;
   const titleClass = clsx(
     styles.title,
-    styles[`title-${tag.slice(1)}`],
-    styles[`${variant}`],
+    styles[variant],
+    styles[`size${size.charAt(0).toUpperCase()}${size.slice(1)}`],
+    uppercase && styles.uppercase,
     className
   );
 
-  return (
-    <Tag className={titleClass} {...restProps}>
-      {children}
-    </Tag>
-  );
+  return <Component className={titleClass}>{children}</Component>;
 };

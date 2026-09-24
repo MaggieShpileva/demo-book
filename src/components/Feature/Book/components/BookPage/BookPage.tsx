@@ -1,41 +1,66 @@
 import type { FC } from 'react';
-import clsx from 'clsx';
-import type { BookPageData } from '../../mock';
-import styles from './BookPage.module.scss';
+import { PageLiveOverlays } from '@components/Feature/Book/components/PageLiveOverlay';
+import { PAGE_DEPTH, PAGE_HEIGHT, PAGE_WIDTH } from '../../constants';
+import { useBookPageHits } from '../../hooks/useBookPageHits';
+import { useBookPageMesh } from '../../hooks/useBookPageMesh';
+import { useBookPagePose } from '../../hooks/useBookPagePose';
+import { getBookSheetScale } from '../../utils/getBookSheetScale';
+import { getBookStackZ } from '../../utils/getBookStackZ';
+import { isBookSheetEager } from '../../utils/isBookSheetEager';
+import { BookPageHits } from './components/BookPageHits';
+import type { BookPageProps } from './types';
 
-type BookPageProps = {
-  page: BookPageData;
-};
+export const BookPage: FC<BookPageProps> = ({
+  number,
+  front,
+  back,
+  opened,
+  bookClosed,
+  delayedPage,
+  sheetCount,
+  page,
+}) => {
+  const { groupRef, mesh } = useBookPageMesh(
+    front,
+    back,
+    isBookSheetEager(number, page, delayedPage)
+  );
+  const { showNext, showPrevEdge, showPrevPage, handleNext, handlePrev } =
+    useBookPageHits({ number, opened, page, delayedPage, sheetCount });
+  const stackZ = getBookStackZ(number, delayedPage);
+  const scale = getBookSheetScale(front);
 
-export const BookPage: FC<BookPageProps> = ({ page }) => {
-  const isCover = page.variant === 'cover';
+  useBookPagePose({
+    groupRef,
+    mesh,
+    opened,
+    bookClosed,
+    number,
+    stackZ,
+  });
 
   return (
-    <article
-      className={clsx(styles.root, isCover ? styles.cover : styles.page)}
-      data-density={isCover ? 'hard' : 'soft'}
-      aria-label={page.title ?? `Page ${page.pageNumber ?? ''}`}
-    >
-      {page.title != null && (
-        <h2 className={isCover ? styles.coverTitle : styles.pageTitle}>
-          {page.title}
-        </h2>
-      )}
-      {isCover && page.subtitle != null && (
-        <p className={styles.coverSubtitle}>{page.subtitle}</p>
-      )}
-      {!isCover && page.body != null && (
-        <div className={styles.pageBody}>
-          {page.body.map((paragraph) => (
-            <p key={paragraph} className={styles.pageParagraph}>
-              {paragraph}
-            </p>
-          ))}
-        </div>
-      )}
-      {page.pageNumber != null && (
-        <span className={styles.pageNumber}>{page.pageNumber}</span>
-      )}
-    </article>
+    <group ref={groupRef} scale={[scale, scale, 1]}>
+      <primitive object={mesh} />
+      <PageLiveOverlays
+        Front={front}
+        Back={back}
+        pageNumber={number}
+        delayedPage={delayedPage}
+        targetPage={page}
+        requireLive={false}
+        sheetCount={sheetCount}
+        width={PAGE_WIDTH}
+        height={PAGE_HEIGHT}
+        depth={PAGE_DEPTH}
+      />
+      <BookPageHits
+        showNext={showNext}
+        showPrevEdge={showPrevEdge}
+        showPrevPage={showPrevPage}
+        onNext={handleNext}
+        onPrev={handlePrev}
+      />
+    </group>
   );
 };

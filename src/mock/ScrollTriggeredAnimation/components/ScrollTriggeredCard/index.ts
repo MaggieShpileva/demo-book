@@ -1,0 +1,1 @@
+export { ScrollTriggeredCard } from './ScrollTriggeredCard';

@@ -1,0 +1,37 @@
+@use '@styles/index.scss' as *;
+
+.headerMenuIssues {
+  margin: 0;
+  padding: 0;
+  width: calc(307px * var(--ui-scale));
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: calc(12px * var(--ui-scale));
+  list-style: none;
+}
+
+.item {
+  width: 100%;
+}
+
+.link {
+  padding: 0;
+  width: 100%;
+  height: calc(40px * var(--ui-scale));
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: $gray-c3;
+  font-size: calc($font-size-xl * var(--ui-scale));
+  line-height: $line-height-tight;
+  text-align: right;
+  cursor: pointer;
+  font-family: $font-family-medium;
+  letter-spacing: calc(-0.8px * var(--ui-scale));
+  text-decoration: none;
+}
+
+.linkActive {
+  color: $black;
+}

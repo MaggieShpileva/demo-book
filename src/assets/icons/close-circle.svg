@@ -1,8 +1,0 @@
-<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="check">
-<path id="Vector" d="M8.26261 0H3.73739C1.6733 0 0 1.6733 0 3.73739V8.26259C0 10.3267 1.6733 12 3.73739 12H8.26259C10.3267 12 12 10.3267 12 8.26259V3.73739C12 1.6733 10.3267 0 8.26261 0Z" fill="var(--fill-0, #D3EBFF)" fill-opacity="0.6"/>
-<g id="Close">
-<path id="Vector_2" d="M3.1 8.95811L8.75733 3.30078M8.75733 8.95811L3.1 3.30078" stroke="var(--stroke-0, #415462)" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-</g>
-</svg>

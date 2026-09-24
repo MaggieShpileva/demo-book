@@ -1,0 +1,22 @@
+@use '@styles/index.scss' as *;
+
+.modal {
+  --bottom-modal-backdrop: #{$black-45};
+  --bottom-modal-sheet-bg: #{$white};
+  --bottom-modal-content-bg: #{$white};
+  --bottom-modal-radius: calc(20px * var(--ui-scale));
+  --bottom-modal-handle-color: #{$black-10};
+  --bottom-modal-max-width: 100dvw;
+  --bottom-modal-z-index: 1001;
+}
+
+.handle {
+  margin: calc(8px * var(--ui-scale)) auto 0;
+  width: calc(60px * var(--ui-scale));
+  height: calc(4px * var(--ui-scale));
+}
+
+.content {
+  padding: calc(12px * var(--ui-scale)) calc(20px * var(--ui-scale))
+    calc(20px * var(--ui-scale));
+}

@@ -1,0 +1,19 @@
+@use '@styles/index.scss' as *;
+
+.root {
+  padding-left: calc(109px * var(--page-scale));
+  margin-top: 0;
+  width: calc(1059px * var(--page-scale));
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: calc(52px * var(--page-scale));
+  color: $black;
+  font-family: $font-family-regular;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: calc(40px * var(--page-scale));
+}

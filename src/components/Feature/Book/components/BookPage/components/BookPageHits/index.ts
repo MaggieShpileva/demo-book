@@ -1,0 +1,1 @@
+export { BookPageHits } from './BookPageHits';

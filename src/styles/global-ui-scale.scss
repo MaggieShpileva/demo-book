@@ -1,7 +1,24 @@
-@use "./mixins" as *;
+@use 'sass:math';
+@use './index.scss' as *;
 
 :root {
-  --ui-scale: 1;
+  --ui-scale: #{$ui-scale-min};
+  --ui-desktop-scale: #{$ui-desktop-scale-min};
 
-  @include dynit(--ui-scale, 1, 1.2375, 375, 768, $unit: "");
+  @include dynit(
+    --ui-scale,
+    $ui-scale-min,
+    $ui-scale-max,
+    math.div($breakpoint-xs, 1px),
+    math.div($breakpoint-sm, 1px),
+    $unit: ''
+  );
+  @include dynit(
+    --ui-desktop-scale,
+    $ui-desktop-scale-min,
+    $ui-desktop-scale-max,
+    math.div($breakpoint-md, 1px),
+    math.div($breakpoint-4k, 1px),
+    $unit: ''
+  );
 }

@@ -1,0 +1,29 @@
+@use '@styles/index.scss' as *;
+
+.root {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: white;
+  box-shadow:
+    inset 0 0 50px $book-page-inset-shadow,
+    0 10px 35px $black-30;
+  color: $book-page-text;
+  pointer-events: none;
+}
+
+.edge {
+  width: 20%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.edgeLeft {
+  left: 0;
+}
+
+.edgeRight {
+  right: 0;
+}

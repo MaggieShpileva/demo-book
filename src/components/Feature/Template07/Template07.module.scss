@@ -1,0 +1,27 @@
+@use '@styles/index.scss' as *;
+
+.root {
+  @include page-template-artboard;
+  position: relative;
+
+  > :not(.stage) {
+    flex-shrink: 0;
+  }
+}
+
+.header {
+  position: relative;
+  z-index: 6;
+}
+
+.cta {
+  position: absolute;
+  top: calc(314px * var(--page-scale));
+  left: calc(100px * var(--page-scale));
+  z-index: 6;
+}
+
+.stage {
+  position: absolute;
+  inset: 0;
+}

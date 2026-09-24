@@ -1,5 +1,6 @@
-export { Button } from './Button';
-export { Input } from './Input';
-export { Modal } from './Modal';
+export { CatalogCta } from './CatalogCta';
 export { Title } from './Title';
 export { Typography } from './Typography';
+export { Point } from './Point';
+export { FlipCard } from './FlipCard';
+export { Loader } from './Loader';

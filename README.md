@@ -45,5 +45,3 @@ docker compose up --build
 ## 🛠️ Технологии
 
 React 19 • TypeScript • Vite 7 • React Router • SCSS Modules • ESLint • Prettier • Stylelint
-# figma-test
-# book

@@ -1,0 +1,44 @@
+@use '@styles/index.scss' as *;
+
+.root {
+  color: $black;
+}
+
+.description {
+  width: figma(140);
+  position: absolute;
+  top: figma(83);
+  left: figma(18);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: figma(4);
+  font-size: figma(11);
+  line-height: 1.45;
+  font-family: $font-family-regular;
+  letter-spacing: figma(-0.22);
+}
+
+.paragraph {
+  margin: 0;
+}
+
+.title {
+  width: figma(304);
+  margin: 0;
+  position: absolute;
+  top: figma(456);
+  left: figma(18);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  font-size: figma(18);
+  line-height: 1.3;
+  font-family: $font-family-regular;
+  letter-spacing: figma(-0.36);
+  text-transform: uppercase;
+}
+
+.titleLine {
+  white-space: nowrap;
+}

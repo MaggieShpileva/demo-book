@@ -11,9 +11,20 @@ $font-size-5xl: 48px;
 $font-size-6xl: 56px;
 
 // Высота строки
+$line-height-none: 1;
 $line-height-base: 1.5;
 $line-height-tight: 1.2;
 $line-height-loose: 1.8;
+
+// Template pages (fluid scale via container query width)
+$page-design-width: 1487px;
+$page-design-height: 2298px;
+
+// UI scale (global-ui-scale.scss)
+$ui-scale-min: 1;
+$ui-scale-max: 1.2375;
+$ui-desktop-scale-min: 1;
+$ui-desktop-scale-max: 2.7142;
 
 // Отступы
 $spacing-xs: 4px;
@@ -24,7 +35,8 @@ $spacing-xl: 32px;
 $spacing-2xl: 48px;
 
 // Радиусы скругления
-$border-radius-sm: 4px;
+$border-radius-xs: 4px;
+$border-radius-sm: 6px;
 $border-radius-md: 8px;
 $border-radius-lg: 12px;
 $border-radius-xl: 16px;
@@ -43,3 +55,6 @@ $transition-slow: 350ms;
 $font-weight-regular: 400;
 $font-weight-medium: 500;
 $font-weight-bold: 700;
+$font-family-regular: graphik-regular, sans-serif;
+$font-family-medium: graphik-medium, sans-serif;
+$font-family-druk-bold: druk-bold, sans-serif;

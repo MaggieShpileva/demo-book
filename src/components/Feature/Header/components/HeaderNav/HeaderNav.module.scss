@@ -1,0 +1,16 @@
+@use '@styles/index.scss' as *;
+
+.headerNav {
+  margin: auto;
+  width: calc(189px * var(--ui-scale));
+  height: calc(22px * var(--ui-scale));
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  border-radius: calc($border-radius-md * var(--ui-scale));
+  background-color: rgba($black, 0.2);
+  backdrop-filter: blur(10px);
+  isolation: isolate;
+  overflow: hidden;
+  pointer-events: auto;
+}

@@ -1,1 +1,0 @@
-export { BookHtmlFace } from './BookHtmlFace';

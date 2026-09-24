@@ -1,4 +1,7 @@
-@forward "./colors";
-@forward "./variables";
-@forward "./mixins";
-@forward "./typography";
+// Главный файл стилей - экспорт всех partials
+@use './typography'; // подключает @font-face в бандл
+@forward './colors';
+@forward './variables';
+@forward './mixins';
+@forward './typography';
+@forward './figma-scale';

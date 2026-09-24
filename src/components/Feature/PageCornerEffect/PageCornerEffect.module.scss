@@ -1,0 +1,19 @@
+@use '@styles/index.scss' as *;
+
+.root {
+  width: $page-design-width;
+  height: $page-design-height;
+  position: relative;
+}
+
+.effect {
+  width: 2159px;
+  height: calc(103% + 90px);
+  position: absolute;
+  top: -90px;
+  right: 0;
+  z-index: 3;
+  object-fit: cover;
+  object-position: top right;
+  pointer-events: none;
+}

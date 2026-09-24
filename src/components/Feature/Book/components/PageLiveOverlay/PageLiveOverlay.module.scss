@@ -1,0 +1,19 @@
+@use '@styles/index.scss' as *;
+
+.root {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  pointer-events: none;
+  visibility: hidden;
+
+  [data-book-live] {
+    visibility: visible;
+  }
+
+  [data-book-hit] {
+    opacity: 0;
+    pointer-events: auto;
+    visibility: visible;
+  }
+}

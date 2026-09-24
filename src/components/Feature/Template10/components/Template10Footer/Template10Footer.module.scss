@@ -1,0 +1,33 @@
+@use '@styles/index.scss' as *;
+
+.root {
+  padding: 0 calc(109px * var(--page-scale)) calc(64px * var(--page-scale));
+  width: 100%;
+  position: absolute;
+  top: calc(1867px * var(--page-scale));
+  left: 0;
+  z-index: 2;
+  display: grid;
+  align-items: end;
+  grid-template-columns: 1fr auto 1fr;
+  box-sizing: border-box;
+}
+
+.cta {
+  width: calc(705.84px * var(--page-scale));
+  grid-column: 2;
+}
+
+.slideNumber {
+  margin: 0;
+  grid-column: 3;
+  color: $black;
+  font-size: calc(35px * var(--page-scale));
+  line-height: 1.45;
+  font-family: $font-family-regular;
+  font-weight: $font-weight-regular;
+  justify-self: end;
+  letter-spacing: calc(-0.7px * var(--page-scale));
+  text-transform: uppercase;
+  white-space: nowrap;
+}

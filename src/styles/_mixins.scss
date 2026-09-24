@@ -1,4 +1,31 @@
-@use "sass:math";
+@use 'sass:math';
+@use './colors' as *;
+@use './variables' as *;
+
+// Fluid template page root (1487px artboard, proportional scale)
+@mixin page-template-root($design-height: $page-design-height) {
+  --page-scale: min(1, 100cqw / #{$page-design-width});
+
+  width: 100%;
+  max-width: $page-design-width;
+  min-height: calc(#{$design-height} * var(--page-scale));
+  background-color: $white;
+  container-type: inline-size;
+  margin-inline: auto;
+  overflow-x: clip;
+}
+
+// Fixed artboard for pages that rasterize to a book texture (1487 × 2298)
+@mixin page-template-artboard {
+  --page-scale: 1;
+
+  width: $page-design-width;
+  height: $page-design-height;
+  display: flex;
+  flex-direction: column;
+  background-color: $white;
+  overflow: hidden;
+}
 
 // Breakpoints
 $breakpoint-xs: 375px;
@@ -6,6 +33,8 @@ $breakpoint-sm: 768px;
 $breakpoint-md: 1024px;
 $breakpoint-lg: 1440px;
 $breakpoint-xl: 1920px;
+$breakpoint-2xl: 2560px;
+$breakpoint-4k: 3840px;
 
 // Миксины для медиа-запросов
 
@@ -37,23 +66,9 @@ $breakpoint-xl: 1920px;
   }
 }
 
-// Средние десктопы (от 1280px — ступень между sm и lg для типографики)
-@mixin desktop-md {
-  @media (min-width: 1280px) and (max-width: #{$breakpoint-lg - 1px}) {
-    @content;
-  }
-}
-
 // Большие десктопы (1440px-1919px)
 @mixin desktop-lg {
   @media (min-width: $breakpoint-lg) and (max-width: #{$breakpoint-xl - 1px}) {
-    @content;
-  }
-}
-
-// Очень большие экраны (≥1920px)
-@mixin desktop-xl {
-  @media (min-width: $breakpoint-xl) {
     @content;
   }
 }
@@ -65,6 +80,12 @@ $breakpoint-xl: 1920px;
 }
 
 @mixin tablet($width: $breakpoint-sm) {
+  @media (min-width: $width) {
+    @content;
+  }
+}
+
+@mixin desktop-xs($width: $breakpoint-md) {
   @media (min-width: $width) {
     @content;
   }
@@ -89,12 +110,19 @@ $breakpoint-xl: 1920px;
 /// @param {number} $min-screen - Минимальная ширина экрана (в px)
 /// @param {number} $max-screen - Максимальная ширина экрана (в px)
 /// @param {string} $unit - Единица измерения: 'px' (по умолчанию) или '' для безразмерных свойств (scale, opacity и т.д.)
-@mixin dynit($property, $min-value, $max-value, $min-screen, $max-screen, $unit: "px") {
-  $suffix: "";
+@mixin dynit(
+  $property,
+  $min-value,
+  $max-value,
+  $min-screen,
+  $max-screen,
+  $unit: 'px'
+) {
+  $suffix: '';
   $value-diff: $max-value - $min-value;
   $screen-diff: $max-screen - $min-screen;
 
-  @if $unit != "" {
+  @if $unit != '' {
     $suffix: #{$unit};
   }
 
@@ -103,7 +131,7 @@ $breakpoint-xl: 1920px;
     #{$property}: #{$min-value}#{$suffix};
   }
 
-  @if $unit == "" {
+  @if $unit == '' {
     // Firefox does not reliably support typed arithmetic like (100vw - X) / 1px.
     // Keep smooth interpolation for supporting engines and provide stepped fallback.
     @media (min-width: #{$min-screen}px) and (max-width: #{$max-screen}px) {
@@ -112,7 +140,9 @@ $breakpoint-xl: 1920px;
       @supports (opacity: calc(100vw / 1px)) {
         $slope: math.div($value-diff, $screen-diff);
 
-        #{$property}: calc(#{$min-value} + #{$slope} * (100vw - #{$min-screen}px) / 1px);
+        #{$property}: calc(
+          #{$min-value} + #{$slope} * (100vw - #{$min-screen}px) / 1px
+        );
       }
     }
 
@@ -133,7 +163,9 @@ $breakpoint-xl: 1920px;
     @media (min-width: #{$min-screen}px) and (max-width: #{$max-screen}px) {
       $slope: math.div($value-diff, $screen-diff);
 
-      #{$property}: calc(#{$min-value}#{$suffix} + #{$slope} * (100vw - #{$min-screen}px));
+      #{$property}: calc(
+        #{$min-value}#{$suffix} + #{$slope} * (100vw - #{$min-screen}px)
+      );
     }
   }
 
@@ -150,12 +182,19 @@ $breakpoint-xl: 1920px;
 /// @param {number} $min-screen - Минимальная высота экрана (в px)
 /// @param {number} $max-screen - Максимальная высота экрана (в px)
 /// @param {string} $unit - Единица измерения: 'px' (по умолчанию) или '' для безразмерных свойств (scale, opacity и т.д.)
-@mixin dynit-vh($property, $min-value, $max-value, $min-screen, $max-screen, $unit: "px") {
-  $suffix: "";
+@mixin dynit-vh(
+  $property,
+  $min-value,
+  $max-value,
+  $min-screen,
+  $max-screen,
+  $unit: 'px'
+) {
+  $suffix: '';
   $value-diff: $max-value - $min-value;
   $screen-diff: $max-screen - $min-screen;
 
-  @if $unit != "" {
+  @if $unit != '' {
     $suffix: #{$unit};
   }
 
@@ -164,14 +203,16 @@ $breakpoint-xl: 1920px;
     #{$property}: #{$min-value}#{$suffix};
   }
 
-  @if $unit == "" {
+  @if $unit == '' {
     @media (min-height: #{$min-screen}px) and (max-height: #{$max-screen}px) {
       #{$property}: #{$min-value};
 
       @supports (opacity: calc(100dvh / 1px)) {
         $slope: math.div($value-diff, $screen-diff);
 
-        #{$property}: calc(#{$min-value} + #{$slope} * (100dvh - #{$min-screen}px) / 1px);
+        #{$property}: calc(
+          #{$min-value} + #{$slope} * (100dvh - #{$min-screen}px) / 1px
+        );
       }
     }
 
@@ -192,7 +233,9 @@ $breakpoint-xl: 1920px;
     @media (min-height: #{$min-screen}px) and (max-height: #{$max-screen}px) {
       $slope: math.div($value-diff, $screen-diff);
 
-      #{$property}: calc(#{$min-value}#{$suffix} + #{$slope} * (100dvh - #{$min-screen}px));
+      #{$property}: calc(
+        #{$min-value}#{$suffix} + #{$slope} * (100dvh - #{$min-screen}px)
+      );
     }
   }
 

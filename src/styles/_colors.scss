@@ -1,32 +1,49 @@
-// Основные цвета
-$black-005: #0a0a0a;
-$black-010: #141414;
-$black-020: #1f1f1f;
-$black-030: #2a2a2a;
-$black-040: #353535;
-$black-050: #404040;
-$white-005: #fafafa;
-$white-010: #f5f5f5;
-$white-020: #f0f0f0;
-$white-030: #ebebeb;
-$white-040: #e6e6e6;
-$white-050: #e0e0e0;
+// Neutrals
+$white: #fff; // Белый
+$white-fd: #fdfdfd; // Белый FD
+$black: #000; // Чёрный
+$black-05: #050505; // Чёрный 05
+$gray: #1c1c1c; // Серый
+$gray-cc: #ccc; // Серый CC
+$gray-97: #979797; // Серый 97 (loader track)
+$gray-8f: #8f8f89; // Номер страницы шаблона
+$surface-gray: #efefef; // layout fill (Figma layer)
+$gray-ece: #eceded; // fact badge (Figma)
+$gray-c3: #c3c3c3; // menu inactive
+$pink-af: #ff95af; // menu icon stroke
+$pink-ef: #ffeaef; // menu icon fill / divider
 
-// Семантические цвета
-$primary-color: #007bff;
-$secondary-color: #6c757d;
-$success-color: #28a745;
-$error-color: #dc3545;
-$warning-color: #ffc107;
-$info-color: #17a2b8;
+// Accent
+$electric-lime-crayola: #dbff00; // Электрик лайм Крайола
+$sandy-reef: #ac8c75; // Песчаная рифта
 
-// Текст
-$text-primary: $black-005;
-$text-secondary: $black-030;
-$text-tertiary: $black-040;
-$text-inverse: $white-005;
+// Градиент Акцентный (linear)
+$gradient-accent-start: #f5fdc4;
+$gradient-accent-end: #dbff00;
+$gradient-accent: linear-gradient(
+  180deg,
+  $gradient-accent-start 0%,
+  $gradient-accent-end 63.62%
+);
 
-// Фон
-$bg-primary: $white-005;
-$bg-secondary: $white-010;
-$bg-tertiary: $white-020;
+// Градиент (angular)
+$gradient-angular-end: #cdf200;
+$gradient-angular: conic-gradient(
+  from 0deg,
+  rgb(138, 174, 39, 0) 0%,
+  rgb(161, 225, 58, 0) 0.01%,
+  $gradient-angular-end 100%
+);
+
+// Book
+$base-green: $electric-lime-crayola;
+$pale-lime-green: $gradient-accent-start;
+$white-24: rgba($white, 0.24);
+$black-06: rgba($black, 0.06);
+$black-10: rgba($black, 0.1);
+$black-30: rgba($black, 0.3);
+$black-45: rgba($black, 0.45);
+$book-page-text: #332415;
+$book-page-inset-shadow: rgba(80, 45, 15, 0.25);
+$placeholder-gradient-start: #a4a4b2;
+$placeholder-gradient-end: #f7f6f6;

@@ -1,0 +1,11 @@
+@use '@styles/index.scss' as *;
+
+.root {
+  width: 100%;
+  flex: 1;
+  background-color: $black-05;
+}
+
+.spacer {
+  height: 50vh;
+}

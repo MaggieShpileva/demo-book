@@ -1,0 +1,17 @@
+@use '@styles/index.scss' as *;
+
+.root {
+  margin: 0 calc(316px * var(--page-scale)) 0 auto;
+  width: calc(294px * var(--page-scale));
+  max-width: 100%;
+  color: $black;
+  font-size: calc(35px * var(--page-scale));
+  line-height: 1.39;
+  text-align: right;
+  flex-shrink: 0;
+  font-family: $font-family-regular;
+  font-weight: $font-weight-regular;
+  letter-spacing: calc(-0.7px * var(--page-scale));
+  overflow-wrap: break-word;
+  text-transform: uppercase;
+}

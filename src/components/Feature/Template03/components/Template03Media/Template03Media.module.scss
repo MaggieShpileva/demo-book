@@ -1,0 +1,24 @@
+@use '@styles/index.scss' as *;
+
+.root {
+  width: calc(1425px * var(--page-scale));
+  max-width: 100%;
+  min-height: 0;
+  position: relative;
+  flex: 1 1 auto;
+  background-color: $surface-gray;
+  margin-inline: calc(100px * var(--page-scale));
+  overflow: hidden;
+}
+
+.image {
+  width: calc(1343px * var(--page-scale));
+  height: calc(100% - 123px * var(--page-scale));
+  position: absolute;
+  top: calc(95px * var(--page-scale));
+  left: calc(44px * var(--page-scale));
+  display: block;
+  object-fit: contain;
+  object-position: center;
+  pointer-events: none;
+}

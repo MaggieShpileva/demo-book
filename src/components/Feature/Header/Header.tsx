@@ -1,42 +1,19 @@
 import type { FC } from 'react';
-import clsx from 'clsx';
-import { NavLink } from 'react-router-dom';
-import SVG_ReactLogo from '@assets/react.svg?react';
+import { AnimatePresence } from 'motion/react';
+import { HeaderBar } from './components/HeaderBar/HeaderBar';
+import { HeaderMenu } from './components/HeaderMenu/HeaderMenu';
+import { useHeaderMenu } from './hooks/useHeaderMenu';
 import styles from './Header.module.scss';
 
 export const Header: FC = () => {
+  const { isOpen, toggle, close } = useHeaderMenu();
+
   return (
     <header className={styles.header}>
-      <div className={styles.headerContainer}>
-        <div className={styles.logos}>
-          <img src={'/vite.svg'} alt="Vite" /> {/* путь к файлу из public */}
-          <SVG_ReactLogo className={clsx(styles.logo, styles.reactLogo)} />
-        </div>
-        <nav className={styles.nav} aria-label="Main navigation">
-          <ul className={styles.navList}>
-            <li className={styles.navItem}>
-              <NavLink to="/" className={styles.navLink} end>
-                Home
-              </NavLink>
-            </li>
-            <li className={styles.navItem}>
-              <NavLink to="/rating" className={styles.navLink}>
-                Рейтинг
-              </NavLink>
-            </li>
-            <li className={styles.navItem}>
-              <NavLink to="/book" className={styles.navLink}>
-                Book
-              </NavLink>
-            </li>
-            <li className={styles.navItem}>
-              <NavLink to="/about" className={styles.navLink}>
-                About
-              </NavLink>
-            </li>
-          </ul>
-        </nav>
-      </div>
+      <HeaderBar isOpen={isOpen} onToggle={toggle} />
+      <AnimatePresence>
+        {isOpen ? <HeaderMenu onClose={close} /> : null}
+      </AnimatePresence>
     </header>
   );
 };

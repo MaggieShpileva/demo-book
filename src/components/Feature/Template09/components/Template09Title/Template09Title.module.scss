@@ -1,0 +1,20 @@
+@use '@styles/index.scss' as *;
+
+.root {
+  width: calc(748px * var(--page-scale));
+  height: calc(1870px * var(--page-scale));
+  position: absolute;
+  top: calc(261px * var(--page-scale));
+  left: 50%;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+.title {
+  width: calc(1870px * var(--page-scale));
+  flex: none;
+  transform: rotate(90deg);
+}

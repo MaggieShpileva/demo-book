@@ -1,0 +1,54 @@
+@use '@styles/index.scss' as *;
+
+@property --loader-progress {
+  inherits: true;
+  initial-value: 0%;
+  syntax: '<percentage>';
+}
+
+.root {
+  --loader-progress: 0%;
+
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: transparent;
+  transition: --loader-progress $transition-slow ease-out;
+  background-clip: text;
+  background-image: linear-gradient(
+    to top,
+    $gradient-angular-end 0,
+    $gradient-angular-end var(--loader-progress),
+    $gray-97 var(--loader-progress),
+    $gray-97 100%
+  );
+  -webkit-text-fill-color: transparent;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.thirty,
+.word {
+  margin: 0;
+  color: inherit;
+  font-family: $font-family-druk-bold;
+  letter-spacing: 0;
+  -webkit-text-fill-color: inherit;
+  white-space: nowrap;
+}
+
+.thirty {
+  font-size: calc(96px * var(--ui-scale));
+  line-height: normal;
+}
+
+.word {
+  margin-top: calc(-28px * var(--ui-scale));
+  font-size: calc(48px * var(--ui-scale));
+  line-height: normal;
+}

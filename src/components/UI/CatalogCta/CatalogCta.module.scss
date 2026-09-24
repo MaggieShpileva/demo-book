@@ -1,0 +1,22 @@
+@use '@styles/index.scss' as *;
+
+.root {
+  padding: calc(34.24px * var(--page-scale)) calc(165px * var(--page-scale));
+  width: calc(705.84px * var(--page-scale));
+  max-width: 100%;
+  min-height: calc(107px * var(--page-scale));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  background-color: $black;
+  color: $white;
+  font-size: calc(23.54px * var(--page-scale));
+  line-height: calc(35.31px * var(--page-scale));
+  cursor: pointer;
+  font-family: $font-family-medium;
+  letter-spacing: calc(2.996px * var(--page-scale));
+  pointer-events: auto;
+  text-decoration: none;
+  text-transform: uppercase;
+}

@@ -1,0 +1,27 @@
+@use '@styles/index.scss' as *;
+
+.root {
+  @include page-template-artboard;
+
+  > :not(.main) {
+    flex-shrink: 0;
+  }
+}
+
+.title {
+  padding: calc(38px * var(--page-scale)) calc(82px * var(--page-scale)) 0
+    calc(102px * var(--page-scale));
+}
+
+.main {
+  padding: calc(7px * var(--page-scale)) 0 0 calc(109px * var(--page-scale));
+  min-height: 0;
+  display: grid;
+  flex: 1 1 auto;
+  align-items: stretch;
+  grid-template-columns:
+    calc(842px * var(--page-scale))
+    calc(569px * var(--page-scale));
+  grid-template-rows: minmax(0, 1fr);
+  column-gap: calc(5px * var(--page-scale));
+}

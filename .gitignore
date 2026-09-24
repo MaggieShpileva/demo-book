@@ -1,5 +1,6 @@
 node_modules/
 dist/
+out/
 
 # Local agent task time tracking
 .cursor/task-time/

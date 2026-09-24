@@ -1,0 +1,57 @@
+@use '@styles/index.scss' as *;
+
+.root {
+  padding-top: calc(100px * var(--page-scale));
+  padding-bottom: calc(40px * var(--page-scale));
+  width: calc(1426px * var(--page-scale));
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  color: $black;
+  line-height: 1.45;
+  border-bottom: calc(2px * var(--page-scale)) solid $black;
+  font-family: $font-family-regular;
+  margin-inline: calc(100px * var(--page-scale));
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  font-size: calc(87.206px * var(--page-scale));
+  font-weight: $font-weight-regular;
+  letter-spacing: calc(-1.7441px * var(--page-scale));
+  text-box: trim-both cap alphabetic;
+  white-space: nowrap;
+}
+
+.article {
+  width: calc(288px * var(--page-scale));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-self: stretch;
+}
+
+.label {
+  margin: 0;
+  font-size: calc(20px * var(--page-scale));
+  letter-spacing: calc(-0.4px * var(--page-scale));
+  text-box: trim-both cap alphabetic;
+}
+
+.itemId {
+  margin: 0;
+  font-size: calc(40px * var(--page-scale));
+  letter-spacing: calc(-0.8px * var(--page-scale));
+  text-box: trim-both cap alphabetic;
+}
+
+.pageNumber {
+  margin: 0;
+  width: calc(107px * var(--page-scale));
+  font-size: calc(43.603px * var(--page-scale));
+  text-align: right;
+  letter-spacing: calc(-0.8721px * var(--page-scale));
+  text-box: trim-both cap alphabetic;
+}

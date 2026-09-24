@@ -1,14 +1,18 @@
 @use '@styles/index.scss' as *;
 
 .title {
-  font-family: var(--font-random-grotesque);
+  margin: 0;
+  color: $black;
+  overflow-wrap: break-word;
 }
 
 .regular {
+  font-family: $font-family-regular;
   font-weight: $font-weight-regular;
 }
 
 .medium {
+  font-family: $font-family-medium;
   font-weight: $font-weight-medium;
 }
 
@@ -16,42 +20,59 @@
   font-weight: $font-weight-bold;
 }
 
-.title-1 {
-  font-size: $font-size-xl;
-
-  @include tablet-sm {
-    font-size: $font-size-2xl;
-  }
-
-  @include desktop-sm {
-    font-size: $font-size-3xl;
-  }
-
-  @include desktop-md {
-    font-size: $font-size-4xl;
-  }
-
-  @include desktop-lg {
-    font-size: $font-size-5xl;
-  }
-
-  @include desktop-xl {
-    font-size: $font-size-6xl;
-  }
+.uppercase {
+  text-transform: uppercase;
 }
 
-.title-2 {
-  font-size: $font-size-xl;
+.sizeSmall {
+  font-size: calc(53.984px * var(--page-scale));
+  line-height: 1.45;
+  letter-spacing: calc(-1.0797px * var(--page-scale));
+}
 
-  @include tablet-sm {
-    font-size: $font-size-2xl;
-  }
+.sizeMedium {
+  font-size: calc(77.507px * var(--page-scale));
+  line-height: 1;
+  letter-spacing: calc(-1.5501px * var(--page-scale));
+}
 
-  @include desktop {
-    font-size: $font-size-3xl;
-  }
+.sizeLarge {
+  font-size: calc(99.692px * var(--page-scale));
+  line-height: 1.45;
+  letter-spacing: calc(-1.9938px * var(--page-scale));
+}
 
-  @include large-desktop {
-    font-size: $font-size-4xl;
-  }
+.sizeXlarge {
+  font-size: calc(127.108px * var(--page-scale));
+  line-height: 1.17;
+  letter-spacing: calc(-2.5422px * var(--page-scale));
+  white-space: pre-line;
+}
+
+.sizeDisplay {
+  font-size: calc(230.561px * var(--page-scale));
+  line-height: 1.01;
+  letter-spacing: calc(-4.6112px * var(--page-scale));
+  white-space: pre-line;
+}
+
+.sizeDisplayLg {
+  font-size: calc(257.321px * var(--page-scale));
+  line-height: 1;
+  letter-spacing: calc(-5.1464px * var(--page-scale));
+  white-space: pre-line;
+}
+
+.sizeDisplayXl {
+  font-size: calc(275.69px * var(--page-scale));
+  line-height: 1;
+  letter-spacing: calc(-5.5138px * var(--page-scale));
+  white-space: pre-line;
+}
+
+.sizeDisplay2xl {
+  font-size: calc(352.5px * var(--page-scale));
+  line-height: 1.06;
+  letter-spacing: calc(-7.05px * var(--page-scale));
+  white-space: pre-line;
 }

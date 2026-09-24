@@ -1,0 +1,34 @@
+@use '@styles/index.scss' as *;
+
+.root {
+  @include page-template-artboard;
+
+  > :not(.main) {
+    flex-shrink: 0;
+  }
+}
+
+.main {
+  padding-top: calc(20px * var(--page-scale));
+  min-height: 0;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+
+.cta {
+  padding-right: calc(108px * var(--page-scale));
+  margin-top: calc(34px * var(--page-scale));
+  display: flex;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+.bottom {
+  padding: 0 calc(106px * var(--page-scale)) calc(80px * var(--page-scale)) 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: calc(40px * var(--page-scale));
+  flex-shrink: 0;
+}

@@ -1,0 +1,41 @@
+@use '@styles/index.scss' as *;
+
+.root {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.list {
+  padding: 0;
+  margin: 0;
+  width: calc(474px * var(--page-scale));
+  position: absolute;
+  top: calc(621px * var(--page-scale));
+  left: calc(109px * var(--page-scale));
+  display: flex;
+  flex-direction: column;
+  gap: calc(27px * var(--page-scale));
+  list-style: none;
+  pointer-events: auto;
+}
+
+.item {
+  margin: 0;
+  color: $black;
+  font-size: calc(39.835px * var(--page-scale));
+  line-height: 1.45;
+  font-family: $font-family-regular;
+  font-weight: $font-weight-regular;
+  letter-spacing: calc(-0.7967px * var(--page-scale));
+  overflow-wrap: break-word;
+  text-transform: uppercase;
+}
+
+.cta {
+  position: absolute;
+  top: calc(1530px * var(--page-scale));
+  left: calc(109px * var(--page-scale));
+  pointer-events: auto;
+}

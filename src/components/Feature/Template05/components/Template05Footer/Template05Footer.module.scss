@@ -1,0 +1,21 @@
+@use '@styles/index.scss' as *;
+
+.root {
+  padding: calc(24px * var(--page-scale)) calc(94px * var(--page-scale))
+    calc(80px * var(--page-scale));
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+  color: $black;
+  font-family: $font-family-regular;
+}
+
+.slideNumber {
+  margin: calc(-62px * var(--page-scale)) 0 0;
+  font-size: calc(35px * var(--page-scale));
+  line-height: 1.45;
+  font-weight: $font-weight-regular;
+  letter-spacing: calc(-0.7px * var(--page-scale));
+  text-transform: uppercase;
+  white-space: nowrap;
+}

@@ -1,0 +1,43 @@
+@use '@styles/index.scss' as *;
+
+.root {
+  width: calc(320px * var(--ui-scale));
+  height: calc(250px * var(--ui-scale));
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  // Clip sides/bottom so the bottle emerges from the window; allow overflow above.
+  clip-path: inset(-100% 0 0 0);
+  overflow: visible;
+}
+
+.window {
+  height: calc(130px * var(--ui-scale));
+  position: absolute;
+  bottom: 0;
+  z-index: 0;
+  background-color: $white-fd;
+  inset-inline: 0;
+}
+
+.object {
+  margin-bottom: calc(-40px * var(--ui-scale));
+  width: calc(220px * var(--ui-scale));
+  height: calc(340px * var(--ui-scale));
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.bottle {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: bottom center;
+  pointer-events: none;
+}

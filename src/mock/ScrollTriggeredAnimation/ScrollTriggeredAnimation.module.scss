@@ -1,0 +1,22 @@
+@use '@styles/index.scss' as *;
+
+.root {
+  width: 100%;
+  min-height: 220vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(#{$spacing-2xl} * var(--ui-scale));
+  background-color: $black-05;
+  padding-block: 40vh calc(#{$spacing-2xl} * var(--ui-scale));
+}
+
+.list {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(#{$spacing-2xl} * var(--ui-scale));
+  list-style: none;
+}

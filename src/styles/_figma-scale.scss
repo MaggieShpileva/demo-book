@@ -1,0 +1,7 @@
+@use 'sass:math';
+
+$artboard-scale: math.div(1626px, 375px);
+
+@function figma($value) {
+  @return calc(#{$value}px * #{$artboard-scale} * var(--page-scale));
+}

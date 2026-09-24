@@ -1,0 +1,14 @@
+@use '@styles/index.scss' as *;
+
+.root {
+  width: calc(842px * var(--page-scale));
+  display: flex;
+  flex-direction: column;
+  gap: calc(40px * var(--page-scale));
+  color: $black;
+  font-family: $font-family-regular;
+}
+
+.preLine {
+  white-space: pre-line;
+}

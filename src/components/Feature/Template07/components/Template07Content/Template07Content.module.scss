@@ -1,0 +1,13 @@
+@use '@styles/index.scss' as *;
+
+.root {
+  width: calc(620px * var(--page-scale));
+  height: calc(418px * var(--page-scale));
+  position: absolute;
+  top: calc(1827px * var(--page-scale));
+  left: calc(899px * var(--page-scale));
+  z-index: 5;
+  color: $black;
+  font-family: $font-family-regular;
+  overflow: hidden;
+}

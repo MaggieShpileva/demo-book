@@ -1,0 +1,1 @@
+export { CatalogCta } from './CatalogCta';

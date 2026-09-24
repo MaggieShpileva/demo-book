@@ -1,0 +1,20 @@
+@use '@styles/index.scss' as *;
+
+.root {
+  position: absolute;
+  top: calc(2186px * var(--page-scale));
+  left: calc(1484px * var(--page-scale));
+  z-index: 5;
+  color: $black;
+  font-family: $font-family-regular;
+}
+
+.slideNumber {
+  margin: 0;
+  font-size: calc(35px * var(--page-scale));
+  line-height: 1.45;
+  font-weight: $font-weight-regular;
+  letter-spacing: calc(-0.7px * var(--page-scale));
+  text-transform: uppercase;
+  white-space: nowrap;
+}

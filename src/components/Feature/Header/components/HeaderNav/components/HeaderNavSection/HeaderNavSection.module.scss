@@ -1,0 +1,91 @@
+@use '@styles/index.scss' as *;
+
+$nav-duration: 640ms;
+$nav-ease: cubic-bezier(0.33, 0, 0.2, 1);
+
+.headerNavSection {
+  padding: 0 calc(6px * var(--ui-scale));
+  min-width: calc(14px * var(--ui-scale));
+  height: 100%;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(6px * var(--ui-scale));
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  flex-grow: 0.1167;
+  flex-shrink: 1;
+  flex-basis: 0;
+  transition: flex-grow $nav-duration $nav-ease;
+}
+
+.headerNavSectionActive {
+  flex-grow: 0.65;
+}
+
+.headerNavSectionActive:has(.title) {
+  justify-content: space-between;
+}
+
+.fill {
+  width: calc(var(--header-nav-fill, 0) * 100%);
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: $gradient-accent;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity $nav-duration $nav-ease,
+    width $nav-duration $nav-ease;
+}
+
+.headerNavSectionActive .fill {
+  opacity: 1;
+}
+
+.headerNavSectionCover .fill {
+  width: 100%;
+}
+
+.headerNavSectionBack .fill {
+  left: auto;
+  right: 0;
+}
+
+.tick {
+  width: 1px;
+  height: calc(14px * var(--ui-scale));
+  position: absolute;
+  top: 50%;
+  right: 0;
+  background-color: $white;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.headerNavSection:last-child .tick {
+  display: none;
+}
+
+.title,
+.progress {
+  color: $white;
+  font-size: calc(12px * var(--ui-scale));
+  line-height: 1.5;
+  font-family: $font-family-regular;
+  letter-spacing: calc(-0.12px * var(--ui-scale));
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity $nav-duration $nav-ease;
+}
+
+.headerNavSectionActive .title,
+.headerNavSectionActive .progress {
+  opacity: 1;
+}

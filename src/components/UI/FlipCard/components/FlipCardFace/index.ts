@@ -1,0 +1,1 @@
+export { FlipCardFace } from './FlipCardFace';

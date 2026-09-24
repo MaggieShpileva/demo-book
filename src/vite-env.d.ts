@@ -1,8 +1,9 @@
 /// <reference types="vite/client" />
 
-declare module '*.webp' {
-  const src: string;
-  export default src;
+interface Window {
+  IS_ANDROID_WEBVIEW?: boolean;
+  IS_IOS_WEBVIEW?: boolean;
+  IS_WEB?: boolean;
 }
 
 declare module '*.svg' {
@@ -23,4 +24,14 @@ declare module '*.svg?react' {
     React.SVGProps<SVGSVGElement> & { title?: string }
   >;
   export default ReactComponent;
+}
+
+declare module '*.webp' {
+  const src: string;
+  export default src;
+}
+
+declare module '*.png' {
+  const src: string;
+  export default src;
 }
