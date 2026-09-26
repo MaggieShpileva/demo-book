@@ -1,4 +1,8 @@
-import { setBookPage, selectBookPage } from '@/store/features/book';
+import {
+  setBookPagePack,
+  selectBookIntroComplete,
+  selectBookPage,
+} from '@/store/features/book';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import {
   BOOK_NAV_SECTIONS,
@@ -9,6 +13,7 @@ import {
 
 export const useHeaderNav = () => {
   const page = useAppSelector(selectBookPage);
+  const isVisible = useAppSelector(selectBookIntroComplete);
   const dispatch = useAppDispatch();
   const activeIndex = getBookNavSectionIndex(page);
 
@@ -16,8 +21,15 @@ export const useHeaderNav = () => {
     sections: BOOK_NAV_SECTIONS,
     activeIndex,
     page,
+    isVisible,
     setSection: (index: number) => {
-      dispatch(setBookPage(BOOK_NAV_SECTIONS[index].page));
+      const section = BOOK_NAV_SECTIONS[index];
+      if (section == null) {
+        return;
+      }
+
+      // Any nav section jump: flip intermediate sheets as one pack (both ways).
+      dispatch(setBookPagePack(section.page));
     },
     getProgress: (index: number) => {
       const section = BOOK_NAV_SECTIONS[index];

@@ -1,0 +1,44 @@
+@use '@styles/index.scss' as *;
+
+.root {
+  padding: calc(10px * var(--ui-scale)) calc(12px * var(--ui-scale));
+  width: calc(280px * var(--ui-scale));
+  position: absolute;
+  right: calc(12px * var(--ui-scale));
+  bottom: calc(12px * var(--ui-scale));
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: calc(6px * var(--ui-scale));
+  border-radius: calc(8px * var(--ui-scale));
+  background: rgb(20 20 20 / 0.85);
+  color: #fff;
+  font-size: calc(11px * var(--ui-scale));
+  line-height: 1.3;
+  transform: scale(0.8);
+  pointer-events: auto;
+}
+
+.title {
+  margin: 0;
+  font-weight: 600;
+}
+
+.row {
+  display: grid;
+  align-items: center;
+  grid-template-columns: calc(48px * var(--ui-scale)) 1fr calc(
+      36px * var(--ui-scale)
+    );
+  gap: calc(6px * var(--ui-scale));
+}
+
+.code {
+  padding: calc(6px * var(--ui-scale));
+  margin-top: calc(4px * var(--ui-scale));
+  border-radius: calc(4px * var(--ui-scale));
+  background: rgb(0 0 0 / 0.4);
+  font-size: calc(10px * var(--ui-scale));
+  user-select: all;
+  word-break: break-all;
+}

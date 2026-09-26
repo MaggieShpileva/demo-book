@@ -1,2 +1,2 @@
 export { BookDragProvider } from './BookDragState';
-export { useBookDragContext } from './BookDragContext';
+export { BookDragContext, useBookDragContext } from './BookDragContext';

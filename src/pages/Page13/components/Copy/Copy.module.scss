@@ -1,0 +1,46 @@
+@use '@styles/index.scss' as *;
+
+.copy {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+}
+
+.lead,
+.alt {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: figma(4);
+}
+
+.lead {
+  width: figma(140);
+  top: figma(125);
+  left: figma(190);
+}
+
+.alt {
+  width: figma(155);
+  top: figma(309);
+  left: figma(19);
+}
+
+.highlight,
+.paragraph {
+  margin: 0;
+  font-size: figma(12);
+  line-height: 1.45;
+  letter-spacing: figma(-0.24);
+  white-space: pre-line;
+}
+
+.highlight {
+  color: $beige-b0;
+  font-family: $font-family-medium;
+}
+
+.paragraph {
+  color: $black;
+  font-family: $font-family-regular;
+}

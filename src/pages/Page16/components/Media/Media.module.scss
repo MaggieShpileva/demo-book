@@ -1,0 +1,32 @@
+@use '@styles/index.scss' as *;
+
+.media {
+  width: figma(169);
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: figma(174);
+  z-index: 1;
+  overflow: hidden;
+}
+
+.product {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fade {
+  width: figma(171);
+  height: figma(179);
+  position: absolute;
+  top: figma(-1);
+  left: 0;
+  background-image: linear-gradient(
+    180deg,
+    $gray-e5 14.4%,
+    $gray-c7 66.41%,
+    rgba($gray-c7, 0) 100%
+  );
+  pointer-events: none;
+}

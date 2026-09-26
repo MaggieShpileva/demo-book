@@ -1,6 +1,9 @@
 @use '@styles/index.scss' as *;
+@use 'sass:math';
 
 .root {
+  // Html artboard is page-design size; UI atoms (Point) use --ui-scale for ~375 CSS px.
+  --ui-scale: #{math.div($page-design-width, 375px)};
   width: 100%;
   height: 100%;
   position: relative;
@@ -11,9 +14,13 @@
     visibility: visible;
   }
 
+  [data-book-live] button,
   [data-book-hit] {
-    opacity: 0;
     pointer-events: auto;
     visibility: visible;
+  }
+
+  [data-book-hit] {
+    opacity: 0;
   }
 }

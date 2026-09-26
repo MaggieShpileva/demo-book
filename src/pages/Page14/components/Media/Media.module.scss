@@ -1,0 +1,98 @@
+@use '@styles/index.scss' as *;
+
+.media {
+  width: figma(300);
+  height: figma(204);
+  position: absolute;
+  top: figma(64);
+  left: figma(19);
+  z-index: 1;
+  overflow: hidden;
+}
+
+.camera {
+  width: figma(446);
+  height: figma(446);
+  position: absolute;
+  top: figma(-121);
+  left: figma(-41);
+  max-width: none;
+  display: block;
+  object-fit: cover;
+}
+
+.compact {
+  width: figma(144);
+  height: figma(114);
+  position: absolute;
+  top: figma(37);
+  left: figma(53);
+  overflow: hidden;
+  transform: rotate(0.47deg);
+  border-radius: figma(3);
+
+  &::after {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(
+      140.71deg,
+      rgba(102, 102, 102, 0) 27.6%,
+      rgba(102, 102, 102, 0.2) 73.74%
+    );
+    content: '';
+    pointer-events: none;
+  }
+}
+
+.compactImage {
+  width: 153.54%;
+  height: 140.1%;
+  position: absolute;
+  top: -23.65%;
+  left: -24.85%;
+  max-width: none;
+  display: block;
+}
+
+.strap {
+  width: figma(214);
+  height: figma(135);
+  position: absolute;
+  top: figma(122);
+  left: figma(132);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.strapImage {
+  width: figma(199);
+  height: figma(87);
+  display: block;
+  object-fit: contain;
+  transform: rotate(14.67deg);
+}
+
+.label {
+  margin: 0;
+  width: figma(17);
+  height: figma(132);
+  position: absolute;
+  top: figma(22);
+  left: figma(28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.labelText {
+  color: $terracotta-ce;
+  font-size: figma(11);
+  line-height: 1.45;
+  font-family: $font-family-medium;
+  letter-spacing: figma(-0.22);
+  text-align: center;
+  text-transform: uppercase;
+  transform: rotate(-89.39deg);
+  white-space: nowrap;
+}

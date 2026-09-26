@@ -3,14 +3,13 @@
 
 .point {
   padding: 0;
-  width: calc(26px * var(--ui-scale));
-  height: calc(26px * var(--ui-scale));
+  width: calc(24px * var(--ui-scale));
+  height: calc(24px * var(--ui-scale));
   position: relative;
   border: 0;
   border-radius: 50%;
-  background-color: $electric-lime-crayola;
-  transition: all 0.3s ease-in-out;
-  transform: translate(-50%, -50%);
+  background: linear-gradient(0deg, white 0%, white 100%), white;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
   appearance: none;
   cursor: pointer;
   pointer-events: auto;
@@ -20,94 +19,36 @@
     height: calc(26px * var(--ui-desktop-scale));
   }
 
-  &::before {
-    width: 100%;
-    height: 100%;
+  &::before,
+  &::after {
     position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    border-radius: 50%;
-    background: rgba(220, 255, 0, 0.5);
-    animation: pulseAnimationBigger 1.5s ease-out infinite;
+    background: black;
     content: '';
-    opacity: 0.13;
-    pointer-events: none;
-    scale: 2.4;
-  }
-
-  &:nth-last-of-type(2)::before {
-    animation-delay: 0.6s;
-    opacity: 0;
   }
 
   &::after {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    border-radius: 50%;
-    background: rgba(220, 255, 0, 0.5);
-    content: '';
-    opacity: 0.2;
-    pointer-events: none;
-    scale: 1.6;
-  }
+    width: calc(1px * var(--ui-scale));
+    height: calc(8px * var(--ui-scale));
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
-  .popover {
-    padding: 1.6666vw 1.25vw;
-    position: absolute;
-    top: -1.354vw;
-    right: calc(100% + 3.125vw);
-    border: 1px solid rgb(255, 255, 255, 0.15);
-    border-radius: 1.0416vw;
-    background:
-      linear-gradient(
-        237.09deg,
-        rgb(0, 0, 0, 0) 30.36%,
-        rgb(41, 204, 177, 0.2) 97.89%
-      ),
-      rgb(255, 255, 255, 0.01);
-    backdrop-filter: blur(25px);
-    opacity: 0;
-    overflow: hidden;
-    pointer-events: none;
-
-    &::before {
-      height: 0.625vw;
-      position: absolute;
-      top: 0;
-      right: 0;
-      left: 0;
-      background-color: $electric-lime-crayola;
-      content: '';
+    @include desktop-xs {
+      width: calc(1px * var(--ui-desktop-scale));
+      height: calc(8px * var(--ui-desktop-scale));
     }
   }
 
-  .arrow {
-    position: absolute;
+  &::before {
+    width: calc(8px * var(--ui-scale));
+    height: calc(1px * var(--ui-scale));
     top: 50%;
-    right: calc(100% + 1.041vw);
-    transition: all 0.3s ease-in-out;
-    transform: translate(0, -50%);
-    opacity: 0;
-  }
-}
+    left: 50%;
+    transform: translate(-50%, -50%);
 
-@keyframes pulseAnimationBigger {
-  0% {
-    opacity: 0;
-    scale: 0.5;
-  }
-
-  50% {
-    opacity: 0.13;
-  }
-
-  100% {
-    opacity: 0;
-    scale: 2.8;
+    @include desktop-xs {
+      width: calc(8px * var(--ui-desktop-scale));
+      height: calc(1px * var(--ui-desktop-scale));
+    }
   }
 }

@@ -1,2 +1,2 @@
-export { STAGE1 } from './stage1';
 export { STAGE2 } from './stage2';
+export type { Stage2Page } from './stage2';

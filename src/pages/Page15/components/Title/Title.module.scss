@@ -1,0 +1,38 @@
+@use '@styles/index.scss' as *;
+
+.title {
+  width: figma(265);
+  position: absolute;
+  top: figma(228);
+  left: figma(39);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: figma(10);
+  align-items: center;
+}
+
+.brand,
+.product {
+  margin: 0;
+  line-height: 1;
+  text-align: center;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  white-space: nowrap;
+}
+
+.brand {
+  color: $coral-ec;
+  font-size: figma(24);
+  font-family: $font-family-medium;
+  letter-spacing: figma(-0.48);
+  text-transform: uppercase;
+}
+
+.product {
+  color: $black;
+  font-size: figma(20);
+  font-family: $font-family-regular;
+  letter-spacing: figma(-0.4);
+}

@@ -4,9 +4,7 @@ type BookPageContextValue = {
   setPage: (page: number) => void;
 };
 
-export const BookPageContext = createContext<BookPageContextValue | null>(
-  null
-);
+export const BookPageContext = createContext<BookPageContextValue | null>(null);
 
 export const useBookSetPage = () => {
   const value = useContext(BookPageContext);

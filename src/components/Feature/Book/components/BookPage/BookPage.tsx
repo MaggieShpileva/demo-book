@@ -1,13 +1,18 @@
 import type { FC } from 'react';
-import { PageLiveOverlays } from '@components/Feature/Book/components/PageLiveOverlay';
-import { PAGE_DEPTH, PAGE_HEIGHT, PAGE_WIDTH } from '../../constants';
+import {
+  BOOK_COVER_RENDER_ORDER,
+  BOOK_PAGE_RENDER_ORDER,
+} from '../../constants';
 import { useBookPageHits } from '../../hooks/useBookPageHits';
 import { useBookPageMesh } from '../../hooks/useBookPageMesh';
 import { useBookPagePose } from '../../hooks/useBookPagePose';
-import { getBookSheetScale } from '../../utils/getBookSheetScale';
-import { getBookStackZ } from '../../utils/getBookStackZ';
+import { getBookSheetScale, getContentsSheetTransform } from '../../utils/getBookSheetScale';
 import { isBookSheetEager } from '../../utils/isBookSheetEager';
-import { BookPageHits } from './components/BookPageHits';
+import { ContentsPage } from '@/pages/ContentsPage';
+import { useBookCornerCurl } from '../BookCornerCurlState';
+import { BookPageCorner } from '../BookPageCorner';
+import { BookPageChrome } from './components/BookPageChrome';
+import { BookPagePrintOverlay } from './components/BookPagePrintOverlay';
 import type { BookPageProps } from './types';
 
 export const BookPage: FC<BookPageProps> = ({
@@ -15,51 +20,72 @@ export const BookPage: FC<BookPageProps> = ({
   front,
   back,
   opened,
-  bookClosed,
   delayedPage,
   sheetCount,
   page,
+  sheetAmountsRef,
 }) => {
-  const { groupRef, mesh } = useBookPageMesh(
+  const { isSheetCurled } = useBookCornerCurl();
+  const { groupRef, mesh, frontOverlay } = useBookPageMesh(
     front,
     back,
-    isBookSheetEager(number, page, delayedPage)
+    isBookSheetEager(number, page, delayedPage),
+    number === 0 ? BOOK_COVER_RENDER_ORDER : BOOK_PAGE_RENDER_ORDER
   );
-  const { showNext, showPrevEdge, showPrevPage, handleNext, handlePrev } =
-    useBookPageHits({ number, opened, page, delayedPage, sheetCount });
-  const stackZ = getBookStackZ(number, delayedPage);
-  const scale = getBookSheetScale(front);
+  const hits = useBookPageHits({
+    number,
+    opened,
+    page,
+    delayedPage,
+    sheetCount,
+  });
+  const isContentsSheet = front === ContentsPage;
+  const contentsTransform = isContentsSheet
+    ? getContentsSheetTransform(opened ? 1 : 0)
+    : null;
+  const scale = contentsTransform?.scale ?? getBookSheetScale(front);
+  const offsetY = contentsTransform?.offsetY ?? 0;
 
   useBookPagePose({
     groupRef,
     mesh,
+    Front: front,
     opened,
-    bookClosed,
     number,
-    stackZ,
+    delayedPage,
+    sheetCount,
+    sheetAmountsRef,
   });
 
+  const isCoverSheet = number === 0 || number === sheetCount - 1;
+  const showCorner = !isCoverSheet && !isContentsSheet && number === page;
+  const baseOrder =
+    number === 0 ? BOOK_COVER_RENDER_ORDER : BOOK_PAGE_RENDER_ORDER;
+
   return (
-    <group ref={groupRef} scale={[scale, scale, 1]}>
+    <group ref={groupRef} scale={scale} position={[0, offsetY, 0]}>
       <primitive object={mesh} />
-      <PageLiveOverlays
+      <BookPagePrintOverlay
+        pageMesh={mesh}
+        overlay={frontOverlay}
+        renderOrder={baseOrder + 1}
+      />
+      {showCorner ? (
+        <BookPageCorner mesh={mesh} isCurled={isSheetCurled(number)} />
+      ) : null}
+      <BookPageChrome
         Front={front}
         Back={back}
         pageNumber={number}
         delayedPage={delayedPage}
         targetPage={page}
-        requireLive={false}
         sheetCount={sheetCount}
-        width={PAGE_WIDTH}
-        height={PAGE_HEIGHT}
-        depth={PAGE_DEPTH}
-      />
-      <BookPageHits
-        showNext={showNext}
-        showPrevEdge={showPrevEdge}
-        showPrevPage={showPrevPage}
-        onNext={handleNext}
-        onPrev={handlePrev}
+        showCover={hits.showCover}
+        showNext={hits.showNext}
+        showPrevEdge={hits.showPrevEdge}
+        showPrevPage={hits.showPrevPage}
+        onNext={hits.handleNext}
+        onPrev={hits.handlePrev}
       />
     </group>
   );

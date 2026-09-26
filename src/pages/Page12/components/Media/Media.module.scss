@@ -1,0 +1,22 @@
+@use '@styles/index.scss' as *;
+
+.media {
+  width: figma(158);
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: figma(185);
+  z-index: 1;
+  overflow: hidden;
+}
+
+.image {
+  width: 225.06%;
+  max-width: none;
+  height: 120.19%;
+  position: absolute;
+  top: -14.53%;
+  left: -67.66%;
+  display: block;
+  object-fit: cover;
+}

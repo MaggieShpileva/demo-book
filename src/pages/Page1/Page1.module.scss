@@ -10,15 +10,6 @@
   background-size: figma(856.143) figma(570.832);
 
   @include page-template-artboard;
-
-  // &:before {
-  //   position: absolute;
-  //   inset: 0;
-  //   width: 100%;
-  //   height: 100%;
-  //   background-color:  url('@assets/images/template01/paper-texture.webp');;
-  //   content: '';
-  // }
 }
 
 .pageNumber {

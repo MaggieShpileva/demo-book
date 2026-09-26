@@ -1,0 +1,30 @@
+@use '@styles/index.scss' as *;
+
+.copy {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.lead,
+.highlight {
+  margin: 0;
+  width: figma(149);
+  position: absolute;
+  left: figma(19);
+  font-size: figma(12);
+  line-height: 1.45;
+  letter-spacing: figma(-0.24);
+}
+
+.lead {
+  top: figma(184);
+  font-family: $font-family-regular;
+}
+
+.highlight {
+  top: figma(366);
+  color: $green-73;
+  font-family: $font-family-medium;
+  white-space: pre-line;
+}

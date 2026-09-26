@@ -1,4 +1,3 @@
-export { CatalogCta } from './CatalogCta';
 export { Title } from './Title';
 export { Typography } from './Typography';
 export { Point } from './Point';

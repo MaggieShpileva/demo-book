@@ -1,15 +1,26 @@
 import { Bone, Skeleton, SkinnedMesh } from 'three';
 import type { FC } from 'react';
+import { CoverBack } from '@components/Feature/Book/components/htmlPages/CoverBack';
+import { CoverFront } from '@components/Feature/Book/components/htmlPages/CoverFront';
 import { peekPageTexture } from '@components/Feature/Book/utils/pageTextureCache';
 import {
   createPageEdgeMaterials,
   createPageFaceMaterial,
 } from '@components/Feature/Book/utils/pageMaterials';
+import { ContentsPage } from '@/pages/ContentsPage';
 import { PAGE_SEGMENTS } from '../constants';
 import {
+  bookCoverGeometry,
   bookPageGeometry,
   BOOK_SEGMENT_WIDTH,
 } from './createBookGeometry';
+
+const isCoverFace = (Front: FC) =>
+  Front === CoverFront || Front === CoverBack;
+
+/** Covers + contents: no tip patch (avoids a white corner triangle). */
+const usesPlainGeometry = (Front: FC) =>
+  isCoverFace(Front) || Front === ContentsPage;
 
 export const createBookPageMesh = (Front: FC, Back: FC) => {
   const bones: Bone[] = [];
@@ -24,13 +35,22 @@ export const createBookPageMesh = (Front: FC, Back: FC) => {
   }
 
   const skeleton = new Skeleton(bones);
-  const mesh = new SkinnedMesh(bookPageGeometry, [
+  const source = usesPlainGeometry(Front)
+    ? bookCoverGeometry
+    : bookPageGeometry;
+  const frontTransparent = Front === ContentsPage;
+  // Per-page clone: corner curl mutates tip vertices without affecting other sheets.
+  const mesh = new SkinnedMesh(source.clone(), [
     ...createPageEdgeMaterials(),
-    createPageFaceMaterial(peekPageTexture(Front)),
+    createPageFaceMaterial(peekPageTexture(Front), 'white', {
+      transparent: frontTransparent,
+    }),
     createPageFaceMaterial(peekPageTexture(Back)),
   ]);
 
   mesh.frustumCulled = false;
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
   mesh.add(skeleton.bones[0]);
   mesh.bind(skeleton);
 

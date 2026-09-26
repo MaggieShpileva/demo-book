@@ -7,7 +7,6 @@ import { PAGE_HTML_HEIGHT_PX, PAGE_HTML_WIDTH_PX } from '../constants';
 import type { BookPageOverlayRaster } from './bookPageOverlay';
 import {
   hideBookPageLive,
-  hideBookPageOverlays,
   pageHasLiveLayer,
 } from './hideBookPageOverlays';
 import { htmlNodeToCanvasTexture } from './htmlNodeToCanvasTexture';
@@ -73,11 +72,12 @@ export const rasterizeReactPage = (
       );
       hideBookPageLive(node);
       const overlay = await rasterizeBookPageOverlays(node);
-      hideBookPageOverlays(node);
+      const transparent = node.hasAttribute('data-book-transparent');
       const page = await htmlNodeToCanvasTexture(
         node,
         PAGE_HTML_WIDTH_PX,
-        PAGE_HTML_HEIGHT_PX
+        PAGE_HTML_HEIGHT_PX,
+        transparent ? { background: 'transparent' } : undefined
       );
       return { page, overlay, hasLive };
     } finally {

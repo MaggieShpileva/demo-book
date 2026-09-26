@@ -7,11 +7,25 @@ type PointProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   className?: string;
 };
 
-export const Point: FC<PointProps> = ({ className, style, ...props }) => (
+export const Point: FC<PointProps> = ({
+  className,
+  style,
+  onPointerDown,
+  onClick,
+  ...props
+}) => (
   <button
     type="button"
     className={clsx(styles.point, className)}
     style={style}
+    onPointerDown={(event) => {
+      event.stopPropagation();
+      onPointerDown?.(event);
+    }}
+    onClick={(event) => {
+      event.stopPropagation();
+      onClick?.(event);
+    }}
     {...props}
   />
 );

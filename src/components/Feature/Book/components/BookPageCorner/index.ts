@@ -1,0 +1,1 @@
+export { BookPageCorner } from './BookPageCorner';

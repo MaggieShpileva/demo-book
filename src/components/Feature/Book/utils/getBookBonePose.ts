@@ -12,13 +12,15 @@ export const getBookBonePose = (
   hingeRotation: number,
   targetRotation: number,
   turningTime: number,
-  bookClosed: boolean
+  bookClosedAmount: number
 ) => {
   if (index === 0) {
     return { y: hingeRotation, x: 0 };
   }
 
-  if (bookClosed) {
+  const open = 1 - Math.min(1, Math.max(0, bookClosedAmount));
+
+  if (open <= 0) {
     return { y: 0, x: 0 };
   }
 
@@ -33,9 +35,13 @@ export const getBookBonePose = (
 
   return {
     y:
-      INSIDE_CURVE_STRENGTH * insideCurveIntensity * targetRotation -
-      OUTSIDE_CURVE_STRENGTH * outsideCurveIntensity * targetRotation +
-      TURNING_CURVE_STRENGTH * turningIntensity * targetRotation,
-    x: degToRad(Math.sin(targetRotation) * PAGE_FOLD_DEGREES) * foldIntensity,
+      (INSIDE_CURVE_STRENGTH * insideCurveIntensity * targetRotation -
+        OUTSIDE_CURVE_STRENGTH * outsideCurveIntensity * targetRotation +
+        TURNING_CURVE_STRENGTH * turningIntensity * targetRotation) *
+      open,
+    x:
+      degToRad(Math.sin(targetRotation) * PAGE_FOLD_DEGREES) *
+      foldIntensity *
+      open,
   };
 };

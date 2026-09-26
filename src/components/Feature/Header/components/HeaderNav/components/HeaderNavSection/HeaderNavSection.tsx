@@ -1,5 +1,6 @@
 import type { CSSProperties, FC } from 'react';
 import clsx from 'clsx';
+import { HeaderNavSectionText } from './components/HeaderNavSectionText';
 import styles from './HeaderNavSection.module.scss';
 
 type HeaderNavSectionStyle = CSSProperties & {
@@ -33,6 +34,7 @@ export const HeaderNavSection: FC<HeaderNavSectionProps> = ({
       [styles.headerNavSectionActive]: isActive,
       [styles.headerNavSectionCover]: isCover,
       [styles.headerNavSectionBack]: isBack,
+      [styles.headerNavSectionLabeled]: label != null,
     })}
     style={
       {
@@ -45,15 +47,7 @@ export const HeaderNavSection: FC<HeaderNavSectionProps> = ({
   >
     <span className={styles.fill} />
     <span className={styles.tick} aria-hidden />
-    {label != null ? (
-      <span className={styles.title} aria-hidden>
-        {label}
-      </span>
-    ) : null}
-    {progress != null ? (
-      <span className={styles.progress} aria-hidden>
-        {progress}
-      </span>
-    ) : null}
+    <HeaderNavSectionText tone="white" label={label} progress={progress} />
+    <HeaderNavSectionText tone="black" label={label} progress={progress} />
   </button>
 );

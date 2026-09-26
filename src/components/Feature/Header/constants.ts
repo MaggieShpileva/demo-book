@@ -10,7 +10,7 @@ export const HEADER_COPY = {
   closeMenu: 'Закрыть меню',
   menu: 'Меню',
   bookNav: 'Навигация по книге',
-  navCover: 'Обложка',
+  navContents: 'Содержание',
   navBack: 'Задняя обложка',
 } as const;
 
@@ -69,3 +69,6 @@ export const HEADER_MENU_ITEMS: HeaderMenuItem[] = [
 ];
 
 export const HEADER_MENU_ID = 'app-header-menu';
+
+/** Fade-in for book progress nav after intro completes. */
+export const HEADER_NAV_REVEAL_MS = 560;

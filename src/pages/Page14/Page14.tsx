@@ -1,23 +1,39 @@
 import type { FC } from 'react';
-import { Template04 } from '@components/Feature';
 import { STAGE2 } from '@/data';
+import { Live } from './components';
+// import { Copy, Live, Media, Meta, Title } from './components';
+// import styles from './Page14.module.scss';
 
 export const Page14: FC = () => {
-  const product = STAGE2[4];
+  const product = STAGE2[3];
 
   if (!product) {
     return null;
   }
 
   return (
-    <Template04
-      itemId={product.itemId}
-      name={product.name}
-      brand={product.brand}
-      description={product.description}
-      images={product.images}
-      purchaseUrl={product.purchaseUrl}
-      attributes={product.attributes}
-    />
+    <>
+      {/*
+      <article className={styles.page14}>
+        <Meta content={product.name} />
+        <Media
+          src={product.image}
+          extraSrc={product.extraImage}
+          detailSrc={product.detailImage}
+          label={product.watermark}
+          alt={`${product.title.replace('\n', ' ')}, ${product.name}`}
+        />
+        <Title title={product.title} />
+        <Copy
+          description={product.description}
+          highlight={product.highlight}
+          extraDescription={product.extraDescription}
+        />
+        <p className={styles.pageNumber}>04</p>
+        <Live productName={product.name} points={product.points} />
+      </article>
+      */}
+      <Live productName={product.name} points={product.points} />
+    </>
   );
 };

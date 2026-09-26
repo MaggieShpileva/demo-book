@@ -1,0 +1,7 @@
+@use '@styles/index.scss' as *;
+
+.point {
+  position: absolute;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+}

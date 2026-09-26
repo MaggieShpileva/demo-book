@@ -5,12 +5,10 @@
   height: 100%;
   position: fixed;
   z-index: 100;
-  background: white;
   inset: 0;
 }
 
 .book {
-  padding-top: calc(12px * var(--ui-scale));
   width: 100dvw;
   height: 100dvh;
 }

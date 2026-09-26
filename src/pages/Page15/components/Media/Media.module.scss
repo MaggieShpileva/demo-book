@@ -1,0 +1,69 @@
+@use '@styles/index.scss' as *;
+
+.media {
+  width: figma(264);
+  height: figma(150);
+  position: absolute;
+  top: figma(52);
+  left: figma(40);
+  z-index: 1;
+}
+
+.frame {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  max-width: none;
+  height: 110%;
+  position: relative;
+  top: -8%;
+  left: 0;
+  display: block;
+  object-fit: cover;
+  object-position: 0 20%;
+}
+
+.startLabel,
+.endLabel {
+  margin: 0;
+  width: figma(8);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.startLabel {
+  height: figma(112);
+  top: 0;
+  left: figma(-21);
+}
+
+.endLabel {
+  height: figma(109);
+  top: figma(41);
+  left: figma(285);
+}
+
+.labelText {
+  color: $coral-ec;
+  font-size: figma(11);
+  line-height: 1.45;
+  text-align: center;
+  font-family: $font-family-medium;
+  letter-spacing: figma(-0.22);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.startLabel .labelText {
+  transform: rotate(-90deg);
+}
+
+.endLabel .labelText {
+  transform: rotate(90deg);
+}

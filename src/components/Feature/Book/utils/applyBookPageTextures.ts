@@ -1,4 +1,4 @@
-import { MeshBasicMaterial, type SkinnedMesh, type Texture } from 'three';
+import { MeshLambertMaterial, type SkinnedMesh, type Texture } from 'three';
 
 const FACE_MATERIAL_OFFSET = 4;
 
@@ -15,14 +15,16 @@ export const applyBookPageTextures = (
   const frontMaterial = materials[FACE_MATERIAL_OFFSET];
   const backMaterial = materials[FACE_MATERIAL_OFFSET + 1];
   if (
-    !(frontMaterial instanceof MeshBasicMaterial) ||
-    !(backMaterial instanceof MeshBasicMaterial)
+    !(frontMaterial instanceof MeshLambertMaterial) ||
+    !(backMaterial instanceof MeshLambertMaterial)
   ) {
     return;
   }
 
   frontMaterial.map = front;
   backMaterial.map = back;
+  frontMaterial.emissiveMap = front;
+  backMaterial.emissiveMap = back;
   frontMaterial.needsUpdate = true;
   backMaterial.needsUpdate = true;
 };

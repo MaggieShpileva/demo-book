@@ -1,18 +1,18 @@
 import { createContext, useContext, type MutableRefObject } from 'react';
-import type {
-  BookDragMode,
-  BookDragState,
-} from '../../utils/bookDrag';
+import type { BookDragMode, BookDragState } from '../../utils/bookDrag';
 
 type BookDragContextValue = {
   dragRef: MutableRefObject<BookDragState | null>;
-  startDrag: (sheet: number, mode: BookDragMode, startX: number) => void;
+  startDrag: (
+    sheet: number,
+    mode: BookDragMode,
+    startX: number,
+    options?: { onTap?: () => void }
+  ) => void;
   isDragging: boolean;
 };
 
-export const BookDragContext = createContext<BookDragContextValue | null>(
-  null
-);
+export const BookDragContext = createContext<BookDragContextValue | null>(null);
 
 export const useBookDragContext = () => {
   const value = useContext(BookDragContext);

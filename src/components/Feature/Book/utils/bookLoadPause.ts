@@ -13,10 +13,7 @@ const notifyBookLoadPause = () => {
 
 export const isBookLoadPaused = () => flags.walk || flags.drag;
 
-export const setBookLoadPause = (
-  key: BookLoadPauseKey,
-  value: boolean
-) => {
+export const setBookLoadPause = (key: BookLoadPauseKey, value: boolean) => {
   if (flags[key] === value) {
     return;
   }

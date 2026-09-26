@@ -49,6 +49,22 @@ export const rasterizeBookPageOverlays = async (
     const texture = await htmlNodeToCanvasTexture(frame, width, height, {
       background: 'transparent',
     });
+    // Page face already has the in-bounds art — keep only the bleed here.
+    const canvas = texture.image;
+    if (canvas instanceof HTMLCanvasElement) {
+      const context = canvas.getContext('2d');
+      if (context) {
+        const scaleX = canvas.width / width;
+        const scaleY = canvas.height / height;
+        context.clearRect(
+          padding.left * scaleX,
+          padding.top * scaleY,
+          PAGE_HTML_WIDTH_PX * scaleX,
+          PAGE_HTML_HEIGHT_PX * scaleY
+        );
+        texture.needsUpdate = true;
+      }
+    }
     return { texture, padding };
   } finally {
     frame.remove();

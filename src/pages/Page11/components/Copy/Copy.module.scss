@@ -1,0 +1,43 @@
+@use '@styles/index.scss' as *;
+
+.copy {
+  position: absolute;
+  top: figma(280);
+  left: figma(19);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  color: $black;
+}
+
+.columns {
+  display: flex;
+  gap: figma(26);
+}
+
+.paragraph {
+  width: figma(140);
+  margin: 0;
+  font-size: figma(12);
+  line-height: 1.45;
+  font-family: $font-family-regular;
+  letter-spacing: figma(-0.24);
+}
+
+.divider {
+  width: figma(140);
+  height: 0;
+  margin: figma(28) 0 0;
+  border: 0;
+  border-top: figma(2) solid $violet-62;
+}
+
+.highlight {
+  width: figma(183);
+  margin: figma(12) 0 0;
+  color: rgba($violet-62, 0.8);
+  font-size: figma(11);
+  line-height: 1.45;
+  font-family: $font-family-medium;
+  letter-spacing: figma(-0.22);
+}

@@ -8,5 +8,6 @@ export const disposeBookPageMesh = (mesh: SkinnedMesh) => {
   materials.slice(4).forEach((material) => {
     material.dispose();
   });
+  mesh.geometry.dispose();
   mesh.skeleton.dispose();
 };

@@ -1,5 +1,10 @@
 import type { FC } from 'react';
 import { Html } from '@react-three/drei';
+import { useThree } from '@react-three/fiber';
+import {
+  BookDragContext,
+  useBookDragContext,
+} from '@components/Feature/Book/components/BookDragState';
 import { BookLiveOnlyProvider } from '@components/Feature/Book/components/BookLive';
 import { StoreProvider } from '@/store/storeProvider';
 import {
@@ -8,8 +13,9 @@ import {
 } from '@components/Feature/Book/constants';
 import { getBookLiveFacePose } from '@components/Feature/Book/utils/getBookLiveFacePose';
 import { getBookLiveHtmlScale } from '@components/Feature/Book/utils/getBookLiveHtmlScale';
+import { PageLiveFade } from './components/PageLiveFade';
+import { usePageLiveMount } from './hooks/usePageLiveMount';
 import { usePageLiveVisible } from './hooks/usePageLiveVisible';
-import styles from './PageLiveOverlay.module.scss';
 
 type PageLiveOverlayProps = {
   Page: FC;
@@ -35,6 +41,8 @@ export const PageLiveOverlay: FC<PageLiveOverlayProps> = ({
   height,
   depth,
 }) => {
+  const invalidate = useThree((state) => state.invalidate);
+  const drag = useBookDragContext();
   const visible = usePageLiveVisible({
     Page,
     side,
@@ -43,9 +51,10 @@ export const PageLiveOverlay: FC<PageLiveOverlayProps> = ({
     targetPage,
     requireLive,
   });
+  const { mounted, onExitComplete } = usePageLiveMount(visible, invalidate);
   const pose = getBookLiveFacePose(side, width, depth);
 
-  if (!visible) {
+  if (!mounted) {
     return null;
   }
 
@@ -63,13 +72,16 @@ export const PageLiveOverlay: FC<PageLiveOverlayProps> = ({
         overflow: 'hidden',
       }}
     >
-      <StoreProvider>
-        <BookLiveOnlyProvider>
-          <div className={styles.root}>
-            <Page />
-          </div>
-        </BookLiveOnlyProvider>
-      </StoreProvider>
+      <PageLiveFade visible={visible} onExitComplete={onExitComplete}>
+        {/* Html uses a separate React root — re-provide book contexts. */}
+        <BookDragContext.Provider value={drag}>
+          <StoreProvider>
+            <BookLiveOnlyProvider>
+              <Page />
+            </BookLiveOnlyProvider>
+          </StoreProvider>
+        </BookDragContext.Provider>
+      </PageLiveFade>
     </Html>
   );
 };

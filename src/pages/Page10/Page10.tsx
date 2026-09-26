@@ -1,11 +1,9 @@
 import type { FC } from 'react';
-import { PageCornerEffect } from '@components/Feature';
 import { PAGES } from '@/data/pages';
-import { Page10Copy } from './components/Page10Copy';
-import { Page10Media } from './components/Page10Media';
-import { Page10Meta } from './components/Page10Meta';
-import { Page10Sku } from './components/Page10Sku';
-import styles from './Page10.module.scss';
+import { Live } from '../Page1/components';
+// import { PageCornerEffect } from '@components/Feature';
+// import { Copy, Media, Meta, Sku } from './components';
+// import styles from './Page10.module.scss';
 
 export const Page10: FC = () => {
   const product = PAGES[9];
@@ -15,14 +13,19 @@ export const Page10: FC = () => {
   }
 
   return (
-    <PageCornerEffect>
-      <article className={styles.page10}>
-        <Page10Meta label="№ 10" content={product.name} />
-        <Page10Media src={product.image} alt={product.name} />
-        <Page10Sku value={product.sku} />
-        <Page10Copy title={product.title} description={product.description} />
-        <p className={styles.pageNumber}>10</p>
-      </article>
-    </PageCornerEffect>
+    <>
+      {/*
+      <PageCornerEffect>
+        <article className={styles.page10}>
+          <Meta label="№ 10" content={product.name} />
+          <Media src={product.image} alt={product.name} />
+          <Sku value={product.sku} />
+          <Copy title={product.title} description={product.description} />
+          <p className={styles.pageNumber}>10</p>
+        </article>
+      </PageCornerEffect>
+      */}
+      <Live productName={product.name} points={product.points} />
+    </>
   );
 };

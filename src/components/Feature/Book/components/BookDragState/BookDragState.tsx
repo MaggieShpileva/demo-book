@@ -1,5 +1,6 @@
 import type { FC, ReactNode } from 'react';
 import { useBookDrag } from '../../hooks/useBookDrag';
+import { useBookStage } from '../BookStage';
 import { BookDragContext } from './BookDragContext';
 
 type BookDragProviderProps = {
@@ -13,7 +14,11 @@ export const BookDragProvider: FC<BookDragProviderProps> = ({
   setPage,
   children,
 }) => {
-  const value = useBookDrag(page, setPage);
+  const { stage, present } = useBookStage();
+  const value = useBookDrag(page, setPage, {
+    shouldPresentCover: () => stage === 'idle',
+    presentCover: present,
+  });
 
   return (
     <BookDragContext.Provider value={value}>

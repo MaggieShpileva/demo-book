@@ -1,0 +1,1 @@
+export { CoverFrontInside } from './CoverFrontInside';

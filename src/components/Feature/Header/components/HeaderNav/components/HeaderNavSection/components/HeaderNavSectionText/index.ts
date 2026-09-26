@@ -1,0 +1,1 @@
+export { HeaderNavSectionText } from './HeaderNavSectionText';

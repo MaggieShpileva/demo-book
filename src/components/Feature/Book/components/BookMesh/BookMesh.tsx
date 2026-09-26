@@ -1,19 +1,28 @@
-import type { FC } from 'react';
+import type { FC, MutableRefObject } from 'react';
 import { BookPage } from '../BookPage';
+import { BookSpine } from '../BookSpine';
 import { bookSheets } from '../../utils/buildBookSheets';
 
 type BookMeshProps = {
   page: number;
   delayedPage: number;
+  sheetAmountsRef: MutableRefObject<number[]>;
 };
 
-export const BookMesh: FC<BookMeshProps> = ({ page, delayedPage }) => {
+export const BookMesh: FC<BookMeshProps> = ({
+  page,
+  delayedPage,
+  sheetAmountsRef,
+}) => {
   const sheetCount = bookSheets.length;
-  const bookClosed = delayedPage === 0 || delayedPage === sheetCount;
 
   return (
     <group rotation-y={Math.PI / 2}>
-      {/* <BookSpine sheetCount={sheetCount} delayedPage={delayedPage} /> */}
+      <BookSpine
+        sheetCount={sheetCount}
+        delayedPage={delayedPage}
+        sheetAmountsRef={sheetAmountsRef}
+      />
       {bookSheets.map((sheet, index) => (
         <BookPage
           key={index}
@@ -21,10 +30,10 @@ export const BookMesh: FC<BookMeshProps> = ({ page, delayedPage }) => {
           front={sheet.Front}
           back={sheet.Back}
           opened={delayedPage > index}
-          bookClosed={bookClosed}
           delayedPage={delayedPage}
           sheetCount={sheetCount}
           page={page}
+          sheetAmountsRef={sheetAmountsRef}
         />
       ))}
     </group>

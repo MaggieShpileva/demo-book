@@ -1,8 +1,0 @@
-@use '@styles/index.scss' as *;
-
-.title {
-  margin: calc(40px * var(--page-scale)) 0 0 calc(94px * var(--page-scale));
-  width: calc(1440px * var(--page-scale));
-  position: relative;
-  z-index: 2;
-}

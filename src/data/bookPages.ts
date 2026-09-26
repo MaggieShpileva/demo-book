@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import { CoverBack } from '@components/Feature/Book/components/htmlPages/CoverBack';
 import { CoverFront } from '@components/Feature/Book/components/htmlPages/CoverFront';
+import { ContentsPage } from '@/pages/ContentsPage';
 import { Page1 } from '@/pages/Page1';
 import { Page2 } from '@/pages/Page2';
 import { Page3 } from '@/pages/Page3';
@@ -21,9 +22,11 @@ import { Page17 } from '@/pages/Page17';
 import { Page18 } from '@/pages/Page18';
 import { Page19 } from '@/pages/Page19';
 import { Page20 } from '@/pages/Page20';
-/** Flat faces: index 0 = outer front cover, last = outer back cover, rest = pages. */
+
+/** Flat faces: index 0 = outer front cover, then contents, pages, outer back cover. */
 export const bookPages: FC[] = [
   CoverFront,
+  ContentsPage,
   Page1,
   Page2,
   Page3,

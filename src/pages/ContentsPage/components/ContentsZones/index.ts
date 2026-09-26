@@ -1,0 +1,1 @@
+export { ContentsZones } from './ContentsZones';

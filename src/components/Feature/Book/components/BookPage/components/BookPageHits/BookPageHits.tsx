@@ -3,6 +3,7 @@ import type { ThreeEvent } from '@react-three/fiber';
 import { BookHitPlane } from '../BookHitPlane';
 
 type BookPageHitsProps = {
+  showCover: boolean;
   showNext: boolean;
   showPrevEdge: boolean;
   showPrevPage: boolean;
@@ -11,6 +12,7 @@ type BookPageHitsProps = {
 };
 
 export const BookPageHits: FC<BookPageHitsProps> = ({
+  showCover,
   showNext,
   showPrevEdge,
   showPrevPage,
@@ -18,6 +20,7 @@ export const BookPageHits: FC<BookPageHitsProps> = ({
   onPrev,
 }) => (
   <>
+    {showCover ? <BookHitPlane side="cover" onPointerDown={onNext} /> : null}
     {showNext ? <BookHitPlane side="next" onPointerDown={onNext} /> : null}
     {showPrevEdge ? (
       <BookHitPlane side="prevEdge" onPointerDown={onPrev} />

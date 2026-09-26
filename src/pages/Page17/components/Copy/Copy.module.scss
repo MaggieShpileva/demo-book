@@ -1,0 +1,33 @@
+@use '@styles/index.scss' as *;
+
+.copy {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.caption,
+.lead {
+  margin: 0;
+  position: absolute;
+  line-height: 1.45;
+}
+
+.caption {
+  width: figma(133);
+  top: figma(126);
+  left: figma(19);
+  color: rgba($brown-7d, 0.8);
+  font-size: figma(11);
+  font-family: $font-family-medium;
+  letter-spacing: figma(-0.22);
+}
+
+.lead {
+  width: figma(160);
+  top: figma(236);
+  left: figma(165);
+  font-size: figma(12);
+  font-family: $font-family-regular;
+  letter-spacing: figma(-0.24);
+}

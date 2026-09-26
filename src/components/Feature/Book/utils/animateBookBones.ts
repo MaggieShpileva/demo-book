@@ -7,9 +7,14 @@ import {
   EASING_FACTOR_FOLD,
   PAGE_TURN_CURL_MS,
 } from '../constants';
+import type { BookDragMode } from './bookDrag';
 import { clampBookOpenedAmount } from './clampBookOpenedAmount';
 import { getBookBonePose } from './getBookBonePose';
-import { getBookHingeRotation } from './getBookHingeRotation';
+import {
+  clampHingeToActiveRest,
+  getBookHingeRotation,
+} from './getBookHingeRotation';
+import { getBookTurnRestAmount } from './getBookTurnRestAmount';
 import { isBookPoseSettled } from './isBookPoseSettled';
 
 type AnimateBookBonesParams = {
@@ -17,23 +22,32 @@ type AnimateBookBonesParams = {
   mesh: SkinnedMesh;
   delta: number;
   opened: boolean;
-  bookClosed: boolean;
+  bookClosedAmount: number;
   number: number;
   turnedAt: MutableRefObject<number>;
   lastOpened: MutableRefObject<boolean>;
   openedAmount: MutableRefObject<number>;
   dragOpenedAmount: number | null;
+  dragMode: BookDragMode | null;
   stackZ: number;
   force: boolean;
+  /** Rest open amount when closed (e.g. presented cover ajar). */
+  closedRestAmount?: number;
+  /** Overrides opened/drag target (e.g. pack-flip sheet lag). */
+  amountTargetOverride?: number | null;
 };
 
 const getTurningTime = (
   dragOpenedAmount: number | null,
+  dragMode: BookDragMode | null,
   opened: boolean,
   turnedAt: number
 ) => {
   if (dragOpenedAmount != null) {
-    const progress = opened ? 1 - dragOpenedAmount : dragOpenedAmount;
+    const progress =
+      dragMode === 'prev' || (dragMode == null && opened)
+        ? 1 - dragOpenedAmount
+        : dragOpenedAmount;
     return Math.sin(progress * Math.PI);
   }
 
@@ -47,7 +61,7 @@ const applyBonePose = (
   hingeRotation: number,
   targetRotation: number,
   turningTime: number,
-  bookClosed: boolean,
+  bookClosedAmount: number,
   delta: number,
   immediate: boolean
 ) => {
@@ -62,7 +76,7 @@ const applyBonePose = (
       hingeRotation,
       targetRotation,
       turningTime,
-      bookClosed
+      bookClosedAmount
     );
 
     if (immediate || index === 0) {
@@ -94,37 +108,38 @@ export const animateBookBones = ({
   mesh,
   delta,
   opened,
-  bookClosed,
+  bookClosedAmount,
   number,
   turnedAt,
   lastOpened,
   openedAmount,
   dragOpenedAmount,
+  dragMode,
   stackZ,
   force,
+  closedRestAmount = 0,
+  amountTargetOverride = null,
 }: AnimateBookBonesParams) => {
   if (lastOpened.current !== opened) {
     turnedAt.current = Date.now();
     lastOpened.current = opened;
   }
 
-  const restAmount = opened ? 1 : 0;
+  const restAmount = opened ? 1 : closedRestAmount;
+  const turnRestAmount =
+    dragMode == null ? restAmount : getBookTurnRestAmount(opened, dragMode);
   const amountTarget =
-    dragOpenedAmount == null
-      ? restAmount
-      : clampBookOpenedAmount(dragOpenedAmount);
+    amountTargetOverride != null
+      ? clampBookOpenedAmount(amountTargetOverride)
+      : dragOpenedAmount == null
+        ? restAmount
+        : clampBookOpenedAmount(dragOpenedAmount);
 
   if (force) {
     openedAmount.current = amountTarget;
     mesh.position.z = stackZ;
   } else if (dragOpenedAmount != null) {
-    easing.damp(
-      openedAmount,
-      'current',
-      amountTarget,
-      BOOK_DRAG_EASING,
-      delta
-    );
+    easing.damp(openedAmount, 'current', amountTarget, BOOK_DRAG_EASING, delta);
     openedAmount.current = clampBookOpenedAmount(openedAmount.current);
   } else if (!isBookPoseSettled(openedAmount.current, amountTarget)) {
     easing.damp(openedAmount, 'current', amountTarget, EASING_FACTOR, delta);
@@ -135,27 +150,37 @@ export const animateBookBones = ({
 
   const turningTime = force
     ? 0
-    : getTurningTime(dragOpenedAmount, opened, turnedAt.current);
-  const hingeRotation = getBookHingeRotation(
-    openedAmount.current,
+    : getTurningTime(
+        dragOpenedAmount,
+        dragMode,
+        opened,
+        turnedAt.current
+      );
+  const hingeRotation = clampHingeToActiveRest(
+    getBookHingeRotation(openedAmount.current, number, bookClosedAmount),
+    dragMode,
     number,
-    bookClosed
+    bookClosedAmount
   );
   const targetRotation = getBookHingeRotation(
-    restAmount,
+    turnRestAmount,
     number,
-    bookClosed
+    bookClosedAmount
   );
-  const amountSettled = isBookPoseSettled(
-    openedAmount.current,
-    amountTarget
-  );
+  const amountSettled = isBookPoseSettled(openedAmount.current, amountTarget);
   const stackSettled = isBookPoseSettled(mesh.position.z, stackZ);
   const curlDone = turningTime < 0.001;
+  const closedSettled =
+    isBookPoseSettled(bookClosedAmount, 0) ||
+    isBookPoseSettled(bookClosedAmount, 1);
 
   if (
     force ||
-    (amountSettled && stackSettled && curlDone && dragOpenedAmount == null)
+    (amountSettled &&
+      stackSettled &&
+      curlDone &&
+      closedSettled &&
+      dragOpenedAmount == null)
   ) {
     mesh.position.z = stackZ;
     if (force || !isBookPoseSettled(group.rotation.y, hingeRotation)) {
@@ -165,7 +190,7 @@ export const animateBookBones = ({
         hingeRotation,
         targetRotation,
         0,
-        bookClosed,
+        bookClosedAmount,
         delta,
         true
       );
@@ -173,11 +198,7 @@ export const animateBookBones = ({
     return false;
   }
 
-  if (!stackSettled) {
-    easing.damp(mesh.position, 'z', stackZ, EASING_FACTOR, delta);
-  } else {
-    mesh.position.z = stackZ;
-  }
+  mesh.position.z = stackZ;
 
   const bonesMoving = applyBonePose(
     group,
@@ -185,7 +206,7 @@ export const animateBookBones = ({
     hingeRotation,
     targetRotation,
     turningTime,
-    bookClosed,
+    bookClosedAmount,
     delta,
     false
   );
@@ -194,6 +215,7 @@ export const animateBookBones = ({
     !amountSettled ||
     !stackSettled ||
     !curlDone ||
+    !closedSettled ||
     dragOpenedAmount != null ||
     bonesMoving
   );

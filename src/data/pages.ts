@@ -34,10 +34,7 @@ export const PAGES: PageProps[] = [
     image: WEBP_PAGE1_1,
     sku: '1234567890',
     name: 'сыворотка ',
-    points: [
-      { top: 30, left: 40, factId: 1 },
-      { top: 69, left: 70, factId: 1 },
-    ],
+    points: [{ top: 31.7, left: 71.3, factId: 1 }],
   },
   {
     id: 2,
@@ -47,6 +44,7 @@ export const PAGES: PageProps[] = [
     image: WEBP_PAGE1_2,
     sku: '1234567890',
     name: 'Парфюмерная вода',
+    points: [{ top: 32.8, left: 82.4, factId: 1 }],
   },
   {
     id: 3,
@@ -56,6 +54,7 @@ export const PAGES: PageProps[] = [
     image: WEBP_PAGE1_3,
     sku: '1234567890',
     name: 'туалетная вода',
+    points: [{ top: 56.7, left: 71.3, factId: 1 }],
   },
   {
     id: 4,
@@ -65,6 +64,7 @@ export const PAGES: PageProps[] = [
     image: WEBP_PAGE1_4,
     sku: '7030300008',
     name: 'туалетная вода',
+    points: [{ top: 56.6, left: 90.3, factId: 1 }],
   },
   {
     id: 5,
@@ -76,6 +76,7 @@ export const PAGES: PageProps[] = [
     image: WEBP_PAGE1_5,
     sku: '19000002926',
     name: 'крем для волос',
+    points: [{ top: 33.1, left: 83.8, factId: 1 }],
   },
   {
     id: 6,
@@ -85,6 +86,7 @@ export const PAGES: PageProps[] = [
     image: WEBP_PAGE1_6,
     sku: '89140300005',
     name: 'крем',
+    points: [{ top: 32.9, left: 83.7, factId: 1 }],
   },
   {
     id: 7,
@@ -94,6 +96,7 @@ export const PAGES: PageProps[] = [
     image: WEBP_PAGE1_7,
     sku: '89140300005',
     name: 'пудра',
+    points: [{ top: 79.1, left: 84.3, factId: 1 }],
   },
   {
     id: 8,
@@ -103,6 +106,7 @@ export const PAGES: PageProps[] = [
     image: WEBP_PAGE1_8,
     sku: '9482000001',
     name: 'BB-крем ',
+    points: [{ top: 32, left: 66.3, factId: 1 }],
   },
   {
     id: 9,
@@ -112,6 +116,7 @@ export const PAGES: PageProps[] = [
     image: WEBP_PAGE1_9,
     sku: '6030400045',
     name: 'мицеллярная вода ',
+    points: [{ top: 26, left: 90.5, factId: 1 }],
   },
   {
     id: 10,
@@ -121,5 +126,6 @@ export const PAGES: PageProps[] = [
     image: WEBP_PAGE1_10,
     sku: '29172400001',
     name: 'крем-спрей',
+    points: [{ top: 56, left: 55.7, factId: 1 }],
   },
 ];

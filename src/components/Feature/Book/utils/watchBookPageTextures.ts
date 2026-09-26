@@ -1,13 +1,13 @@
 import type { FC } from 'react';
-import type { CanvasTexture } from 'three';
+import type { Texture } from 'three';
 import { peekPageTexture } from '@components/Feature/Book/utils/pageTextureCache';
 import { isBookLoadPaused } from './bookLoadPause';
 
 const WATCH_MS = 80;
 
 type WatchBookPageTexturesReady = {
-  front: CanvasTexture;
-  back: CanvasTexture;
+  front: Texture;
+  back: Texture;
 };
 
 export const watchBookPageTextures = (

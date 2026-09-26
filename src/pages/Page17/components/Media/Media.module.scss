@@ -1,0 +1,49 @@
+@use '@styles/index.scss' as *;
+
+.media {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.product,
+.portrait {
+  position: absolute;
+  overflow: hidden;
+}
+
+.product {
+  width: figma(160);
+  height: figma(182);
+  top: figma(24);
+  left: figma(165);
+}
+
+.productImage {
+  width: 120.17%;
+  height: 106.07%;
+  position: absolute;
+  top: -2.53%;
+  left: -8.31%;
+  max-width: none;
+  display: block;
+  object-fit: cover;
+}
+
+.portrait {
+  width: figma(128);
+  height: figma(182);
+  top: figma(236);
+  left: figma(19);
+}
+
+.portraitImage {
+  width: figma(155);
+  height: figma(208);
+  position: absolute;
+  top: 0;
+  left: figma(-22);
+  max-width: none;
+  display: block;
+  object-fit: cover;
+}

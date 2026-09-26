@@ -1,8 +1,14 @@
 import { bookPages } from '@/data/bookPages';
 import { HEADER_COPY } from '../../../constants';
 
+/** bookPages: [CoverFront, ContentsPage, Page1…Page20, CoverBack]. */
+const CONTENTS_PAGE = 1;
+const ARCHIVE_START = 2;
+const GLOSS_START = 12;
+const SECTION_PAGE_COUNT = 10;
+
 export type BookNavSection = {
-  id: 'cover' | 'archive' | 'gloss' | 'back';
+  id: 'contents' | 'archive' | 'gloss' | 'back';
   page: number;
   ariaLabel: string;
   label?: string;
@@ -11,20 +17,24 @@ export type BookNavSection = {
 };
 
 export const BOOK_NAV_SECTIONS: BookNavSection[] = [
-  { id: 'cover', page: 0, ariaLabel: HEADER_COPY.navCover },
+  {
+    id: 'contents',
+    page: CONTENTS_PAGE,
+    ariaLabel: HEADER_COPY.navContents,
+  },
   {
     id: 'archive',
-    page: 1,
-    start: 1,
-    count: 10,
+    page: ARCHIVE_START,
+    start: ARCHIVE_START,
+    count: SECTION_PAGE_COUNT,
     label: 'Архив',
     ariaLabel: 'Архив',
   },
   {
     id: 'gloss',
-    page: 11,
-    start: 11,
-    count: 10,
+    page: GLOSS_START,
+    start: GLOSS_START,
+    count: SECTION_PAGE_COUNT,
     label: 'Глянец',
     ariaLabel: 'Глянец',
   },
@@ -36,15 +46,15 @@ export const BOOK_NAV_SECTIONS: BookNavSection[] = [
 ];
 
 export const getBookNavSectionIndex = (page: number) => {
-  if (page <= 0) {
+  if (page <= CONTENTS_PAGE) {
     return 0;
   }
 
-  if (page <= 10) {
+  if (page < GLOSS_START) {
     return 1;
   }
 
-  if (page <= 20) {
+  if (page <= GLOSS_START + SECTION_PAGE_COUNT - 1) {
     return 2;
   }
 

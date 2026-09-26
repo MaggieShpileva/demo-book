@@ -2,6 +2,7 @@ import { useLayoutEffect, type FC } from 'react';
 import { useThree } from '@react-three/fiber';
 import { useAppSelector } from '@/store/hooks';
 import { selectModalIsOpen } from '@/store/features/modal';
+import { useBookDragContext } from '@components/Feature/Book/components/BookDragState';
 import { isBookLiveFaceVisible } from '@components/Feature/Book/utils/isBookLiveFaceVisible';
 import { isBookLiveReady } from '@components/Feature/Book/utils/isBookLiveReady';
 import { peekPageHasLive } from '@components/Feature/Book/utils/pageTextureCache';
@@ -25,6 +26,7 @@ export const usePageLiveVisible = ({
 }: UsePageLiveVisibleParams) => {
   const invalidate = useThree((state) => state.invalidate);
   const isModalOpen = useAppSelector(selectModalIsOpen);
+  const { isDragging } = useBookDragContext();
   const ready = isBookLiveReady(
     delayedPage,
     targetPage ?? delayedPage,
@@ -34,7 +36,12 @@ export const usePageLiveVisible = ({
   const hasLive = !requireLive || peekPageHasLive(Page);
   const faceVisible = isBookLiveFaceVisible(side, pageNumber, delayedPage);
   const visible =
-    delayedPage > 0 && ready && hasLive && faceVisible && !isModalOpen;
+    delayedPage > 0 &&
+    ready &&
+    hasLive &&
+    faceVisible &&
+    !isModalOpen &&
+    !isDragging;
 
   useLayoutEffect(() => {
     if (!visible) {

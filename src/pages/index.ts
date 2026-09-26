@@ -1,4 +1,5 @@
 export { Home } from './Home';
+export { ContentsPage } from './ContentsPage';
 export { Page1 } from './Page1';
 export { Page2 } from './Page2';
 export { Page3 } from './Page3';
@@ -19,5 +20,4 @@ export { Page17 } from './Page17';
 export { Page18 } from './Page18';
 export { Page19 } from './Page19';
 export { Page20 } from './Page20';
-export { Product } from './Product';
 export { ScrollDemo } from './ScrollDemo';

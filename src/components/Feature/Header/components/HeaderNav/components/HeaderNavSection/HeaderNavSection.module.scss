@@ -27,14 +27,11 @@ $nav-ease: cubic-bezier(0.33, 0, 0.2, 1);
   flex-grow: 0.65;
 }
 
-.headerNavSectionActive:has(.title) {
-  justify-content: space-between;
-}
-
 .fill {
   width: calc(var(--header-nav-fill, 0) * 100%);
   height: 100%;
   position: absolute;
+  z-index: 0;
   top: 0;
   left: 0;
   background: $gradient-accent;
@@ -62,6 +59,7 @@ $nav-ease: cubic-bezier(0.33, 0, 0.2, 1);
   width: 1px;
   height: calc(14px * var(--ui-scale));
   position: absolute;
+  z-index: 2;
   top: 50%;
   right: 0;
   background-color: $white;
@@ -73,19 +71,53 @@ $nav-ease: cubic-bezier(0.33, 0, 0.2, 1);
   display: none;
 }
 
+.textRow {
+  padding: 0 calc(6px * var(--ui-scale));
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(6px * var(--ui-scale));
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity $nav-duration $nav-ease;
+}
+
+.headerNavSectionActive .textRow {
+  opacity: 1;
+}
+
+.headerNavSectionLabeled.headerNavSectionActive .textRow {
+  justify-content: space-between;
+}
+
+.textRowWhite {
+  color: $white;
+}
+
+.textRowBlack {
+  color: $black;
+  clip-path: inset(0 calc((1 - var(--header-nav-fill, 0)) * 100%) 0 0);
+  transition:
+    opacity $nav-duration $nav-ease,
+    clip-path $nav-duration $nav-ease;
+}
+
+.headerNavSectionBack .textRowBlack {
+  clip-path: inset(0 0 0 calc((1 - var(--header-nav-fill, 0)) * 100%));
+}
+
+.headerNavSectionCover .textRowBlack {
+  clip-path: inset(0 0 0 0);
+}
+
 .title,
 .progress {
-  color: $white;
   font-size: calc(12px * var(--ui-scale));
   line-height: 1.5;
   font-family: $font-family-regular;
   letter-spacing: calc(-0.12px * var(--ui-scale));
   white-space: nowrap;
-  opacity: 0;
-  transition: opacity $nav-duration $nav-ease;
-}
-
-.headerNavSectionActive .title,
-.headerNavSectionActive .progress {
-  opacity: 1;
 }

@@ -5,12 +5,19 @@ import {
   PAGE_WIDTH,
 } from '../constants';
 
-export type BookHitSide = 'next' | 'prevEdge' | 'prevPage';
+export type BookHitSide = 'next' | 'prevEdge' | 'prevPage' | 'cover';
 
 const HIT_LIFT = 0.02;
 
 export const getBookPageHit = (side: BookHitSide) => {
   const edgeWidth = PAGE_WIDTH * PAGE_HIT_RATIO;
+
+  if (side === 'cover') {
+    return {
+      position: [PAGE_WIDTH / 2, 0, PAGE_DEPTH / 2 + HIT_LIFT] as const,
+      size: [PAGE_WIDTH, PAGE_HEIGHT] as const,
+    };
+  }
 
   if (side === 'next') {
     return {

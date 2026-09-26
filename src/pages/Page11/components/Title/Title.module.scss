@@ -1,0 +1,53 @@
+@use '@styles/index.scss' as *;
+
+.title {
+  width: figma(62);
+  height: figma(209);
+  position: absolute;
+  top: figma(51);
+  left: figma(264);
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.brandWrap,
+.productWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.brandWrap {
+  width: figma(29);
+  height: figma(209);
+}
+
+.productWrap {
+  width: figma(23);
+  height: figma(112);
+}
+
+.brand,
+.product {
+  margin: 0;
+  line-height: 1.3;
+  transform: rotate(-90deg);
+  white-space: nowrap;
+}
+
+.brand {
+  color: $violet-62;
+  font-size: figma(40);
+  font-family: $font-family-medium;
+  letter-spacing: figma(-0.8);
+  text-transform: uppercase;
+}
+
+.product {
+  color: $black;
+  font-size: figma(32);
+  font-family: $font-family-regular;
+  letter-spacing: figma(-0.64);
+}

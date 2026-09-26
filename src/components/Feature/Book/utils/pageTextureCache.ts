@@ -1,12 +1,31 @@
 import type { FC } from 'react';
-import type { CanvasTexture } from 'three';
+import type { Texture } from 'three';
 import type { BookPageOverlayRaster } from './bookPageOverlay';
+import { loadPageImageTexture } from './loadPageImageTexture';
+import { getPageImageSource } from './pageImageSources';
 import { rasterizeReactPage } from './rasterizeReactPage';
 
 type PageTextureEntry = {
-  page: CanvasTexture;
+  page: Texture;
   overlay: BookPageOverlayRaster | null;
   hasLive: boolean;
+};
+
+const loadPageTextureEntry = (Page: FC): Promise<PageTextureEntry> => {
+  const imageSource = getPageImageSource(Page);
+  if (imageSource != null) {
+    return loadPageImageTexture(imageSource.src).then((page) => ({
+      page,
+      overlay: null,
+      hasLive: imageSource.hasLive,
+    }));
+  }
+
+  return rasterizeReactPage(Page).then((result) => ({
+    page: result.page,
+    overlay: result.overlay,
+    hasLive: result.hasLive,
+  }));
 };
 
 const textureCache = new Map<FC, PageTextureEntry>();
@@ -30,13 +49,8 @@ export const getPageTexture = (Page: FC) => {
     return pending.then((entry) => entry.page);
   }
 
-  const next = rasterizeReactPage(Page).then(
-    (result) => {
-      const entry: PageTextureEntry = {
-        page: result.page,
-        overlay: result.overlay,
-        hasLive: result.hasLive,
-      };
+  const next = loadPageTextureEntry(Page).then(
+    (entry) => {
       textureCache.set(Page, entry);
       pendingCache.delete(Page);
       return entry;
@@ -58,8 +72,8 @@ export const loadPageHtmlTextures = (
   Front: FC,
   Back: FC,
   onLoad: (maps: {
-    front: CanvasTexture;
-    back: CanvasTexture;
+    front: Texture;
+    back: Texture;
     frontOverlay: BookPageOverlayRaster | null;
     backOverlay: BookPageOverlayRaster | null;
   }) => void

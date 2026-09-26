@@ -30,6 +30,7 @@ export const useBookCamera = (delayedPage: number) => {
 
     if (
       !isBookPoseSettled(camera.position.x, pose.x) ||
+      !isBookPoseSettled(camera.position.y, pose.y) ||
       !isBookPoseSettled(camera.position.z, pose.z)
     ) {
       state.invalidate();
